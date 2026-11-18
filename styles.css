@@ -936,6 +936,7 @@ html.foto-aberta { overflow: hidden; }
 /* Avaliações (condicionado) */
 .avaliacoes { display: grid; gap: 12px; padding: 26px; border: 2px dashed #E1C766; border-radius: var(--raio); background: #FFFCEF; }
 .avaliacoes h2 { font-size: 1.5rem; margin: 0; }
+#avaliacoes[hidden] { display: none !important; } /* bloco oculto até o link do Google e a liberação das avaliações */
 body.sem-pendencias #avaliacoes { display: none; }
 
 /* ===== Dúvidas frequentes (código do mockup aprovado, ajustado ao nosso site) =====

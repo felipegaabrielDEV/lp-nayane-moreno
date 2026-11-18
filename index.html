@@ -34,7 +34,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="assets/profissional/dra-nayane-topo-900.webp" imagesrcset="assets/profissional/dra-nayane-topo-560.webp 560w, assets/profissional/dra-nayane-topo-900.webp 900w" imagesizes="(min-width: 1024px) 460px, 86vw">
-    <link rel="stylesheet" href="styles.css?v=20261115-5">
+    <link rel="stylesheet" href="styles.css?v=20261118-1">
 </head>
 <body>
 
@@ -647,7 +647,9 @@
     </section>
 
     <!-- =========================== AVALIAÇÕES (condicionado) =========================== -->
-    <section class="secao-curta" id="avaliacoes" aria-labelledby="avaliacoes-titulo">
+    <!-- AVALIAÇÕES DO GOOGLE: bloco OCULTO (atributo hidden) até chegar o link do perfil e a liberação do uso das avaliações (norma do CFO).
+         Para publicar: troque o texto da <div class="avaliacoes"> pelas avaliações/link e apague o atributo hidden da <section>. -->
+    <section class="secao-curta" id="avaliacoes" aria-labelledby="avaliacoes-titulo" hidden>
         <div class="container">
             <div class="avaliacoes">
                 <div>
@@ -759,7 +761,6 @@
 <a class="flutuante" href="#" data-wa data-wa-origin="botao_flutuante" aria-label="Agendar avaliação pelo WhatsApp"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg></a>
 
 <!-- Só na prévia: mostra ou esconde os marcadores de pendência para apresentar à cliente. -->
-<button class="previa-alternar" type="button" aria-pressed="true">Prévia · <span>ocultar pendências</span></button>
 
 <script src="script.js?v=20261112-12" defer></script>
 </body>
