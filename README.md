@@ -1,6 +1,6 @@
 # 🦷 Dra. Nayane Moreno — Landing Page | Ortodontia em Aracaju
 
-> 🚧 **Prévia 1.** Estrutura, identidade visual e textos da primeira versão. Os pontos que dependem da cliente aparecem na página como marcadores amarelos **PENDENTE** (o botão "Prévia" no canto inferior esquerdo esconde ou mostra os marcadores). A página está com `noindex, nofollow` até a aprovação final.
+> 🚧 **Prévia no ar, ainda fora do Google.** Endereço: **https://dranayanemorenoortodontia.com.br**. A página segue com `noindex, nofollow` até a aprovação final; só sai no lançamento.
 
 Landing page da **Dra. Nayane Moreno**, Cirurgiã-Dentista (CRO-SE 2301) em Aracaju/SE, focada em **Ortodontia**: captar pessoas interessadas em colocar aparelho e levá-las a agendar a avaliação pelo WhatsApp.
 
@@ -8,11 +8,27 @@ Landing page da **Dra. Nayane Moreno**, Cirurgiã-Dentista (CRO-SE 2301) em Arac
 
 ## 📋 Sobre o projeto
 
-- **Posicionamento:** "Dra. Nayane Moreno — Ortodontia em Aracaju".
+- **Posicionamento:** "Dra. Nayane Moreno — Ortodontia em Aracaju". O site é só de Ortodontia.
 - **Tratamentos:** aparelho metálico e aparelho de porcelana. **Alinhador: a Dra. informou em 12/11/2026 que não trabalha com alinhadores** (removido do site).
 - **Formas de atendimento:** convênio (SulAmérica e Amil) e particular.
 - **Conversão:** todos os botões levam ao WhatsApp, com mensagem pronta por origem.
 - **Referências internas:** a estrutura e a engenharia seguem as LPs da Nutri Anna Waleska e da VALLENCI Salas; identidade, textos e imagens são próprios.
+
+---
+
+## 🌐 Domínio e publicação
+
+| Item | Situação |
+|---|---|
+| **Endereço oficial** | `dranayanemorenoortodontia.com.br` (o `www` redireciona para ele) |
+| **Hospedagem** | GitHub Pages, gratuita, com HTTPS forçado |
+| **Arquivo `CNAME`** | Na raiz do repositório; liga o site ao domínio. Não apague |
+| **Registro** | Registro.br, em nome da Dra. Nayane (titular); a gestão técnica fica com o desenvolvedor |
+| **DNS** | Zona do Registro.br: 4 registros `A` para o GitHub Pages e `CNAME` do `www` para `felipegaabrieldev.github.io` |
+| **Validade** | 1 ano, até **18/11/2027**. Renovar no Registro.br antes do vencimento |
+| **Site da mentoria** | Domínio separado (`dranayanemoreno.com.br`), não foi alterado |
+
+Dados de acesso, CPF e pedidos ficam fora deste repositório.
 
 ---
 
@@ -21,16 +37,18 @@ Landing page da **Dra. Nayane Moreno**, Cirurgiã-Dentista (CRO-SE 2301) em Arac
 | Seção | Destaques |
 |---|---|
 | **Menu** | Fixo, com nome e CRO sempre visíveis; menu de tela cheia no celular (fecha com `Esc` ou ao tocar num link) |
-| **Topo** | Título, foto em moldura de arco, cartão com CRO, três números de destaque e faixa com quatro diferenciais |
-| **Para quem é** | Seis situações em cartões com foto no topo (referência: site de salas da Vallenci), título e frase. Fotos ilustrativas geradas por IA, com pessoas diferentes em cada cartão (gênero, idade e tom de pele variados, aparência brasileira), em `assets/situacoes/` (WebP 900x822 e 520x475), com a nota "Imagens ilustrativas" |
-| **Aparelhos** | Dois cartões (metálico e porcelana) com foto no topo (`assets/aparelhos/`, WebP 900x640 e 520x365, ilustrativas, geradas por IA), características e botão próprio |
+| **Topo** | Título, foto em moldura de arco, cartão com CRO, três números de destaque e faixa com seis cartões (os de Evolução e Depoimento rolam até a seção) |
+| **Para quem é** | Seis situações em cartões com foto. Fotos ilustrativas geradas por IA, com a nota "Imagens ilustrativas" (`assets/situacoes/`) |
+| **Aparelhos** | Dois cartões (metálico e porcelana) com foto ilustrativa, características e botão próprio |
+| **Evolução e depoimento** | Caso em andamento (fotos de antes e atual) e vídeo de relato, com autorizações de imagem feitas pela Dra. |
 | **Convênios e particular** | Lado a lado: planos atendidos e atendimento particular |
 | **Como funciona** | Cinco etapas, do WhatsApp ao acompanhamento, e citação da Dra. Nayane |
 | **Sobre** | Formação, trajetória e história pessoal ligada à ortodontia, com cartões de credenciais |
-| **Atendimento** | Três quadros para fotos da Dra. atendendo (grade no computador, carrossel no celular). Hoje com marcadores de pendência e escondida no modo "ocultar pendências" |
-| **Consultório** | Galeria com as fotos do consultório (setas, deslize e teclado), horário e endereço |
-| **Avaliações do Google** | Bloco reservado; só vai ao ar depois da liberação |
-| **Perguntas frequentes** | Oito perguntas em acordeão acessível |
+| **Atendimento** | Fotos da Dra. atendendo (grade no computador, carrossel no celular), com visualização ampliada |
+| **Consultório** | Galeria com as fotos do consultório (setas, deslize e teclado) |
+| **Como chegar** | Endereço, horário e botões que abrem o **perfil da Dra. no Google Maps** |
+| **Avaliações do Google** | **Oculta** (atributo `hidden`) até a liberação; ver pendências |
+| **Perguntas frequentes** | Perguntas em acordeão acessível |
 | **Chamada final e rodapé** | Contato, localização, horário e identificação profissional |
 
 ---
@@ -51,38 +69,37 @@ Segue o **Manual de Identidade Visual** da marca (nov/2026). As cores foram conf
 
 Tipografia: **Montserrat** em todo o site, com o contraste de pesos da logo (forte em "NAYANE", leve em "MORENO"): títulos em 600 e o trecho em destaque em 300, no verde da marca.
 
-Detalhe próprio do site: o **fio do aparelho com o bráquete verde**, tirado da logo, passa sobre a foto do topo. Logomarca em `assets/marca/` (ícone, versão completa e favicon, com fundo transparente).
-
----|---|---|
-| Verde-profundo | `#0F3D3A` | Títulos, faixas e fundos escuros |
-| Menta | `#E6F2EF` | Fundos claros |
-| Creme | `#FBF8F4` | Fundo da página |
-| Areia | `#F4ECE4` | Fundo da seção Sobre |
-| Rosa | `#EED5CE` | Detalhes e acentos |
-| Rosa-escuro | `#A9473E` | Botões de agendamento |
-
-Tipografia (Google Fonts): **Fraunces** nos títulos e **Plus Jakarta Sans** nos textos. Visual: estrutura moderna e objetiva do Modelo 2 com as cores suaves do Modelo 4 (a validar com a cliente).
+Detalhe próprio do site: o **fio do aparelho com o bráquete verde**, tirado da logo. Logomarca em `assets/marca/` (ícone, versão completa e favicon, com fundo transparente).
 
 ---
 
 ## 🛠️ Tecnologias e estrutura
 
-HTML, CSS e JavaScript puros, sem framework nem build, prontos para o GitHub Pages.
+HTML, CSS e JavaScript puros, sem framework nem build, publicados pelo GitHub Pages.
 
 ```
 ├── index.html          # Estrutura e conteúdo de todas as seções
 ├── styles.css          # Identidade, layout responsivo e animações (tokens no :root)
-├── script.js           # Menu, WhatsApp, FAQ, galeria, revelar ao rolar e botão da prévia
+├── script.js           # Menu, WhatsApp, FAQ, galerias, visualização ampliada e revelar ao rolar
+├── CNAME               # Domínio personalizado do GitHub Pages
+├── ferramentas/        # gerar-previa-privada.py: gera um HTML único para conferir o site offline
 └── assets/
     ├── marca/          # Logomarca (ícone, completa e favicon)
     ├── profissional/   # Fotos da Dra. Nayane (WebP)
-    └── consultorio/    # Fotos do consultório (WebP)
+    ├── atendimento/    # Fotos de atendimento
+    ├── consultorio/    # Fotos do consultório (WebP)
+    ├── situacoes/      # Fotos ilustrativas de "Para quem é"
+    ├── aparelhos/      # Fotos ilustrativas dos aparelhos
+    ├── casos/          # Antes e atual do caso e vídeo de depoimento
+    └── convenios/      # Logos dos convênios
 ```
 
 **Onde mexer:**
 - Número do WhatsApp: `<meta name="whatsapp-number">` no `<head>` (só dígitos, com 55 e DDD).
 - Mensagem de cada botão: objeto `mensagens` em `script.js`, pela origem (`data-wa-origin`).
 - Cores e fontes: tokens no início de `styles.css`.
+- Publicar as Avaliações: trocar o texto do bloco `#avaliacoes` e apagar o atributo `hidden` da `<section>`.
+- Lançamento: remover `<meta name="robots" content="noindex, nofollow">` do `<head>` só com a aprovação final.
 
 ---
 
@@ -105,12 +122,21 @@ Depois acesse `http://localhost:8000`.
 
 ---
 
+## 🕓 Histórico de entregas
+
+- **Identidade e estrutura:** logomarca, cores e tipografia do manual da marca; seções completas.
+- **Conteúdo:** textos conferidos contra as respostas da Dra.; alinhador removido; faixa do topo com 6 cartões; antes e atual e depoimento em vídeo publicados com autorização.
+- **Ajustes finais:** botão de prévia retirado do site; bloco de Avaliações oculto; botões "Como chegar" apontam para o perfil do Google Maps; espaçamento do bloco de convênios.
+- **Domínio:** `dranayanemorenoortodontia.com.br` no ar com HTTPS.
+
+---
+
 ## 🗺️ Próximas etapas (prévia 2)
 
 - Formulário curto antes do WhatsApp.
 - Links da Tintim por origem (UTM), Google Tag Manager com Modo de Consentimento e aviso de cookies.
 - Política de privacidade, página 404, imagem de compartilhamento 1200 × 630 e dados para o Google (`Dentist`).
-- Mapa do Google no bloco do consultório.
+- Mapa do Google incorporado no bloco do consultório.
 
 ---
 
@@ -134,7 +160,7 @@ Conferência feita em 13/11/2026 contra os quatro documentos da cliente no Drive
 - [ ] Autorização escrita das operadoras para as logos, se a Dra. tiver
 - [ ] Conferir a norma do CRO-SE por escrito, se o Felipe preferir não depender só da resposta da Dra.
 - [ ] Copy do topo: "sorriso dos sonhos, sem passar anos usando aparelho?" (risco de ser lido como promessa)
-- [ ] Domínio e acesso ao Google Tag Manager
+- [ ] Acesso ao Google Tag Manager (o domínio já está no ar; ver "Domínio e publicação")
 
 **Fora do site, por decisão registrada**
 - Alinhador transparente: a Dra. não trabalha com ele (Mercado, P09)
