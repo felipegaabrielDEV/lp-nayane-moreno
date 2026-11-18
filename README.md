@@ -128,7 +128,7 @@ Conferência feita em 13/11/2026 contra os quatro documentos da cliente no Drive
 - [x] Faixa do topo com 6 cartões, aprovada em 12/11/2026; Evolução e Depoimento agora aparecem também no modo "ocultar pendências"
 
 **Ainda abertas**
-- [ ] **Avaliações do Google** (bloco OCULTO no site, atributo `hidden` em `#avaliacoes`; para publicar, apague o `hidden`): link do perfil e liberação do uso das avaliações (norma do CFO)
+- [ ] **Avaliações do Google** (bloco OCULTO, atributo `hidden` em `#avaliacoes`): o link do perfil no Google Maps já foi recebido e está nos links de "Como chegar"; falta a liberação do uso das avaliações (norma do CFO) para publicar o bloco
 - [ ] Idade mínima da ortodontia: o site diz 11 anos (Profissional, P10), mas o Persona diz "acima de 12" (P02). Confirmar com a Dra.
 - [ ] Foto do diploma e dos certificados (a Dra. perguntou o que é preciso e ainda não enviou)
 - [ ] Autorização escrita das operadoras para as logos, se a Dra. tiver
