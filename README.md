@@ -153,14 +153,26 @@ Conferência feita em 13/11/2026 contra os quatro documentos da cliente no Drive
 - [x] Texto "Quem cuida do seu sorriso" e fotos ilustrativas dos aparelhos e de "Para quem é": aprovados pela Dra.
 - [x] Faixa do topo com 6 cartões, aprovada em 12/11/2026; Evolução e Depoimento agora aparecem também no modo "ocultar pendências"
 
-**Ainda abertas**
-- [ ] **Avaliações do Google** (bloco OCULTO, atributo `hidden` em `#avaliacoes`): o link do perfil no Google Maps já foi recebido e está nos links de "Como chegar"; falta a liberação do uso das avaliações (norma do CFO) para publicar o bloco
-- [ ] Idade mínima da ortodontia: o site diz 11 anos (Profissional, P10), mas o Persona diz "acima de 12" (P02). Confirmar com a Dra.
-- [ ] Foto do diploma e dos certificados (a Dra. perguntou o que é preciso e ainda não enviou)
-- [ ] Autorização escrita das operadoras para as logos, se a Dra. tiver
-- [ ] Conferir a norma do CRO-SE por escrito, se o Felipe preferir não depender só da resposta da Dra.
-- [ ] Copy do topo: "sorriso dos sonhos, sem passar anos usando aparelho?" (risco de ser lido como promessa)
-- [ ] Acesso ao Google Tag Manager (o domínio já está no ar; ver "Domínio e publicação")
+**Ainda abertas** (revisão de 19/11/2026)
+
+*Com a Dra. Nayane*
+- [ ] **Avaliações do Google** (bloco OCULTO, atributo `hidden` em `#avaliacoes`): o link do perfil já está nos botões de "Como chegar"; falta a liberação do uso das avaliações (norma do CFO) e a escolha de quais destacar
+- [ ] **Convênios na ortodontia:** o topo e o bloco Convênios mostram 4 logos, mas a pergunta "Meu convênio cobre o aparelho?" cita só SulAmérica e Amil. Confirmar se Petrobras e Porto Seguro cobrem ortodontia e ajustar o texto
+- [ ] **Idade mínima da ortodontia:** o site diz 11 anos (Profissional, P10), mas o Persona diz "acima de 12" (P02)
+- [ ] **Copy do topo:** "sorriso dos sonhos, sem passar anos usando aparelho?" pode ser lida como promessa de prazo. Alternativa proposta: "Aparelho metálico ou de porcelana: qual combina com você?"
+- [ ] **"Ortopedia Facial" na logo do rodapé:** a logo completa (`assets/marca/logo-completa.png`) traz "Ortodontia & Ortopedia Facial". Confirmar o registro no CRO-SE; se não houver, o rodapé usa só o ícone
+- [ ] **Foto do diploma e dos certificados** (a Dra. perguntou o que é preciso e ainda não enviou)
+- [ ] **Autorização escrita das operadoras** para as logos dos convênios, se a Dra. tiver
+- [ ] **Política de privacidade:** nome de quem responde pelos dados de quem preenche o formulário (necessário para a prévia 2)
+
+*Com o gestor de tráfego*
+- [ ] **Códigos de rastreamento** (pedidos em 19/11/2026, aguardando): ID do Google Tag Manager, Pixel da Meta, conversão do Google Ads, GA4, Microsoft Clarity e links da Tintim por origem
+- [ ] **Regras do rastreamento a combinar:** Meta e Google Ads recebem só o nome do evento e o `event_id` (o Google Ads também o telefone em SHA-256, com consentimento); a posição do botão vai só ao GA4 e ao Clarity; `utm_campaign` sem nome de tratamento; Google Signals e autoConfig do Pixel desligados
+
+*Com a agência*
+- [ ] **Cor oficial da marca:** o manual de identidade estima o verde em `#49B89F`; o site usa `#16AD8E`, conferido nos pixels da logo. Definir uma só e pedir o arquivo vetorial da logo
+- [ ] **Norma do CRO-SE por escrito**, se o Felipe preferir não depender só da resposta da Dra.
+- [ ] **No lançamento:** tirar o `noindex`, avaliar o bairro (São José) no título da página e corrigir endereço e descrição nos cadastros antigos (Facebook e diretórios ainda mostram outro endereço)
 
 **Fora do site, por decisão registrada**
 - Alinhador transparente: a Dra. não trabalha com ele (Mercado, P09)
