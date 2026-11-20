@@ -128,7 +128,7 @@ Depois acesse `http://localhost:8000`.
 - **Conteúdo:** textos conferidos contra as respostas da Dra.; alinhador removido; faixa do topo com 6 cartões; antes e atual e depoimento em vídeo publicados com autorização.
 - **Ajustes finais:** botão de prévia retirado do site; bloco de Avaliações oculto; botões "Como chegar" apontam para o perfil do Google Maps; espaçamento do bloco de convênios.
 - **Domínio:** `dranayanemorenoortodontia.com.br` no ar com HTTPS.
-- **Documentação:** pasta da cliente no Drive reorganizada, com os questionários respondidos pela Dra., os estudos da agência e um LEIA-ME (ver "Documentação no Drive").
+- **Documentação:** pasta da cliente no Drive reorganizada, com os questionários respondidos pela Dra., os estudos da agência e um mapa do projeto, "Leia primeiro" (ver "Documentação no Drive").
 
 ---
 
@@ -138,7 +138,7 @@ O material estratégico fica no **Google Drive**, na pasta da Dra. Nayane, e **n
 
 | Pasta | O que tem |
 |---|---|
-| **LEIA-ME** | Mapa da pasta, de onde cada documento veio e as pendências abertas |
+| **Construção do Site › Leia primeiro — Mapa do projeto** | Mapa da pasta, de onde cada documento veio e as pendências abertas. Comece por ele |
 | **Respostas dos 4 arquivos** | Os 4 questionários respondidos pela Dra. (Profissional, Mercado, Persona e Concorrentes), organizados, com a etiqueta "No site hoje" em cada pergunta |
 | **Construção do Site › Estudos** | Roteiro do site, notas internas da agência, pesquisa de mercado e manual de identidade visual |
 | **Construção do Site › Confirmações** | Conferências com o desenvolvedor |
