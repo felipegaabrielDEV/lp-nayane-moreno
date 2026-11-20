@@ -128,6 +128,25 @@ Depois acesse `http://localhost:8000`.
 - **Conteúdo:** textos conferidos contra as respostas da Dra.; alinhador removido; faixa do topo com 6 cartões; antes e atual e depoimento em vídeo publicados com autorização.
 - **Ajustes finais:** botão de prévia retirado do site; bloco de Avaliações oculto; botões "Como chegar" apontam para o perfil do Google Maps; espaçamento do bloco de convênios.
 - **Domínio:** `dranayanemorenoortodontia.com.br` no ar com HTTPS.
+- **Documentação:** pasta da cliente no Drive reorganizada, com os questionários respondidos pela Dra., os estudos da agência e um LEIA-ME (ver "Documentação no Drive").
+
+---
+
+## 🗂️ Documentação no Drive
+
+O material estratégico fica no **Google Drive**, na pasta da Dra. Nayane, e **não** neste repositório (que é público). Aqui só está o que pode ser publicado. Os links do Drive também ficam de fora.
+
+| Pasta | O que tem |
+|---|---|
+| **LEIA-ME** | Mapa da pasta, de onde cada documento veio e as pendências abertas |
+| **Respostas dos 4 arquivos** | Os 4 questionários respondidos pela Dra. (Profissional, Mercado, Persona e Concorrentes), organizados, com a etiqueta "No site hoje" em cada pergunta |
+| **Construção do Site › Estudos** | Roteiro do site, notas internas da agência, pesquisa de mercado e manual de identidade visual |
+| **Construção do Site › Confirmações** | Conferências com o desenvolvedor |
+| **Fotos - SITE** | Fotos do consultório, do atendimento e das provas sociais, mais a logo |
+
+**Como a informação é pesada** (regra do `CLAUDE.md`), da que mais vale para a que menos vale: resposta da Dra. → fato documentado → hipótese → pendente → interno. Quando duas fontes se contradizem, aponta-se a contradição e pergunta-se; ninguém escolhe sozinho.
+
+**Nunca entram neste repositório:** valores e condições comerciais, metas, orçamento de anúncios, nomes de concorrentes e qualquer análise sobre eles, dados de pacientes e links dos documentos do Drive.
 
 ---
 
@@ -164,6 +183,7 @@ Conferência feita em 13/11/2026 contra os quatro documentos da cliente no Drive
 - [ ] **Foto do diploma e dos certificados** (a Dra. perguntou o que é preciso e ainda não enviou)
 - [ ] **Autorização escrita das operadoras** para as logos dos convênios, se a Dra. tiver
 - [ ] **Política de privacidade:** nome de quem responde pelos dados de quem preenche o formulário (necessário para a prévia 2)
+- [ ] **Resultado sem promessa:** a Dra. quer destacar o resultado do tratamento; combinar como mostrar a evolução sem prometer resultado (regra de publicidade odontológica)
 
 *Com o gestor de tráfego*
 - [ ] **Códigos de rastreamento** (pedidos em 19/11/2026, aguardando): ID do Google Tag Manager, Pixel da Meta, conversão do Google Ads, GA4, Microsoft Clarity e links da Tintim por origem
@@ -173,6 +193,7 @@ Conferência feita em 13/11/2026 contra os quatro documentos da cliente no Drive
 - [ ] **Cor oficial da marca:** o manual de identidade estima o verde em `#49B89F`; o site usa `#16AD8E`, conferido nos pixels da logo. Definir uma só e pedir o arquivo vetorial da logo
 - [ ] **Norma do CRO-SE por escrito**, se o Felipe preferir não depender só da resposta da Dra.
 - [ ] **No lançamento:** tirar o `noindex`, avaliar o bairro (São José) no título da página e corrigir endereço e descrição nos cadastros antigos (Facebook e diretórios ainda mostram outro endereço)
+- [ ] **Google Meu Negócio:** é administrado pela Dra.; no lançamento, pedir acesso (ou combinar que ela atualize) para corrigir endereço, horário e convênios
 
 **Fora do site, por decisão registrada**
 - Alinhador transparente: a Dra. não trabalha com ele (Mercado, P09)
