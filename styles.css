@@ -933,10 +933,12 @@ html.foto-aberta { overflow: hidden; }
 }
 @media (min-width: 768px) { .local { padding: 44px 40px 34px; } .local-cartoes { grid-template-columns: 1fr 1fr; gap: 20px; } .local-cartao { padding: 24px 26px; } }
 
-/* Avaliações (condicionado) */
-.avaliacoes { display: grid; gap: 12px; padding: 26px; border: 2px dashed #E1C766; border-radius: var(--raio); background: #FFFCEF; }
+/* Avaliações do Google (widget Elfsight, cores configuradas no painel do Elfsight com os tokens do site) */
+.avaliacoes { display: grid; gap: 20px; }
 .avaliacoes h2 { font-size: 1.5rem; margin: 0; }
-#avaliacoes[hidden] { display: none !important; } /* bloco oculto até o link do Google e a liberação das avaliações */
+.avaliacoes-moldura { min-height: 360px; padding: 12px; border: 1px solid var(--menta-2); border-radius: var(--raio); background: var(--fundo); } /* min-height evita salto de layout enquanto o widget carrega */
+.avaliacoes-moldura iframe { max-width: 100%; }
+#avaliacoes[hidden] { display: none !important; } /* oculto até a liberação das avaliações (ou ?previa=avaliacoes) */
 body.sem-pendencias #avaliacoes { display: none; }
 
 /* ===== Dúvidas frequentes (código do mockup aprovado, ajustado ao nosso site) =====

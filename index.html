@@ -647,8 +647,11 @@
     </section>
 
     <!-- =========================== AVALIAÇÕES (condicionado) =========================== -->
-    <!-- AVALIAÇÕES DO GOOGLE: bloco OCULTO (atributo hidden) até chegar o link do perfil e a liberação do uso das avaliações (norma do CFO).
-         Para publicar: troque o texto da <div class="avaliacoes"> pelas avaliações/link e apague o atributo hidden da <section>. -->
+    <!-- AVALIAÇÕES DO GOOGLE (widget Elfsight): bloco OCULTO para todo mundo (atributo hidden) e SEM carregar nenhum script de terceiro.
+         Prévia privada: abrir o site com ?previa=avaliacoes no endereço; o script.js tira o hidden e só então injeta o widget.
+         Para publicar de vez: apague o atributo hidden e o bloco "prévia privada" do script.js, e carregue o widget só após o aceite de cookies.
+         Antes de publicar: autorização da Dra. Nayane para usar as avaliações + norma do CFO conferida + política de privacidade citando o Google/Elfsight.
+         ID do widget (conta Elfsight só da Nayane; não reutilizar o ID de outros clientes): 34214394-b603-4c9b-b271-f203c15749db -->
     <section class="secao-curta" id="avaliacoes" aria-labelledby="avaliacoes-titulo" hidden>
         <div class="container">
             <div class="avaliacoes">
@@ -656,7 +659,7 @@
                     <span class="rotulo">Avaliações</span>
                     <h2 id="avaliacoes-titulo">O que os pacientes dizem no Google</h2>
                 </div>
-                <span class="pend">PENDENTE: link do perfil no Google e liberação do uso das avaliações (norma do CFO). Até lá, este bloco não vai ao ar.</span>
+                <div class="avaliacoes-moldura" data-avaliacoes-widget></div>
             </div>
         </div>
     </section>
