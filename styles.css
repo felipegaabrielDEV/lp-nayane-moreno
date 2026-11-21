@@ -938,8 +938,8 @@ html.foto-aberta { overflow: hidden; }
 .avaliacoes h2 { font-size: 1.5rem; margin: 0; }
 .avaliacoes-moldura { min-height: 360px; padding: 12px; border: 1px solid var(--menta-2); border-radius: var(--raio); background: var(--fundo); } /* min-height evita salto de layout enquanto o widget carrega */
 .avaliacoes-moldura iframe { max-width: 100%; }
-#avaliacoes[hidden] { display: none !important; } /* oculto até a liberação das avaliações (ou ?previa=avaliacoes) */
-body.sem-pendencias #avaliacoes { display: none; }
+.avaliacoes-aviso { display: grid; justify-items: center; gap: 16px; padding: 40px 12px; text-align: center; color: var(--texto); }
+.avaliacoes-aviso p { margin: 0; max-width: 44ch; font-size: .95rem; }
 
 /* ===== Dúvidas frequentes (código do mockup aprovado, ajustado ao nosso site) =====
    Tudo dentro de #duvidas, sem JavaScript novo: o script existente alterna aria-expanded e a classe .aberto.
