@@ -1,64 +1,47 @@
-<!-- CARTÃO DE COMPARTILHAMENTO (a imagem que aparece quando alguém manda o link no WhatsApp, Instagram, etc.).
-     Versão no ar: foto do bloco "Sobre", sem moldura, para o rosto aparecer maior na prévia pequena do WhatsApp.
-     Para gerar a imagem: abra este arquivo no navegador, deixe a janela em 1200 x 630 px e tire um print;
-     ou rode `ferramentas/gerar-cartao.js` (Playwright), que salva direto em assets/compartilhar/.
-     Ao mudar o cartao, salve a imagem com OUTRO nome (a data no fim) e troque o endereço nas meta tags og:image
+<!-- CARTÃO DE COMPARTILHAMENTO QUE ESTÁ NO AR (a imagem que aparece quando alguém manda o link no WhatsApp).
+     Quadrado, 1200 x 1200, com a logo ao centro: no WhatsApp a prévia quadrada aparece grande.
+     Para gerar a imagem:  node ferramentas/gerar-cartao.js
+     Ao mudar o cartão, salve a imagem com OUTRO nome (a data no fim) e troque o endereço nas meta tags og:image
      e twitter:image do index.html — o WhatsApp guarda a prévia antiga por muito tempo.
-     Texto: sem preço, sem promessa de resultado e sem superlativo; a identificação (CRO-SE 2301) fica visível. -->
+     Texto: sem preço, sem promessa de resultado e sem superlativo; a identificação (CRO-SE 2301) fica visível.
+     A versão com a foto da Dra. está em cartao-compartilhar-foto.html. -->
 <!doctype html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  :root{
-    --marca:#16AD8E; --botao:#0F7A64; --verde:#0F3F36; --verde-2:#0F7A64;
-    --menta:#E8F6F1; --menta-2:#CDEBE2; --fundo:#F7F9F8; --tinta:#303B39; --texto:#56615F;
-  }
-  body { width:1200px; height:630px; overflow:hidden; font-family:"Montserrat",sans-serif;
-         background:linear-gradient(120deg,#FFFFFF 0%,var(--fundo) 52%,var(--menta) 100%); position:relative; }
+  :root{ --marca:#16AD8E; --verde:#0F3F36; --menta:#E8F6F1; --menta-2:#CDEBE2; --texto:#56615F; }
 
-  /* Foto sem moldura, encostando na borda e derretendo no fundo pela esquerda */
-  .foto { position:absolute; right:0; bottom:0; width:540px; height:630px;
-          object-fit:cover; object-position:58% 8%;
-          -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22%,#000 100%); }
+  /* Cartão QUADRADO (1200 × 1200): no WhatsApp a prévia quadrada aparece grande,
+     como no exemplo da Nutri Anna. A logo ocupa o centro, com bastante respiro.
+     O conteúdo cabe na faixa do meio (1200 × 628), que é o recorte usado pelo Facebook e pelo LinkedIn:
+     assim a logo não é cortada em nenhuma rede. */
+  body { width:1200px; height:1200px; overflow:hidden; background:#FFFFFF;
+         font-family:"Montserrat",sans-serif; display:flex; flex-direction:column;
+         align-items:center; justify-content:center; gap:44px; position:relative; }
 
-  .texto { position:absolute; left:64px; top:66px; width:600px; }
-  .logo { height:80px; margin-bottom:38px; }
-  .rotulo { display:flex; align-items:center; gap:12px; font-size:16px; font-weight:700;
-            letter-spacing:.16em; text-transform:uppercase; color:var(--botao); margin-bottom:20px; }
-  .rotulo::before { content:""; width:32px; height:3px; border-radius:2px; background:var(--marca); }
-  h1 { font-size:54px; line-height:1.12; font-weight:700; color:var(--tinta); letter-spacing:-.015em; }
-  h1 em { display:block; font-style:normal; font-weight:400; color:var(--verde-2); margin-top:8px; }
-  .pills { display:flex; gap:10px; margin-top:34px; flex-wrap:wrap; }
-  .pill { padding:11px 19px; border-radius:999px; background:#fff; border:1px solid var(--menta-2);
-          font-size:16px; font-weight:600; color:var(--verde); box-shadow:0 6px 18px -12px #0F3F3640; }
+  /* Arco menta de fundo, bem suave, para não ficar uma caixa branca vazia */
+  .brilho { position:absolute; inset:0; background:
+      radial-gradient(760px 560px at 50% 42%, #E8F6F180 0%, transparent 70%); }
 
-  /* Assinatura: identificação profissional e endereço do site */
-  .rodape { position:absolute; left:64px; bottom:48px; display:flex; align-items:center; gap:18px; }
-  .rodape strong { font-size:19px; font-weight:700; color:var(--verde); }
-  .rodape span { font-size:16px; font-weight:500; color:var(--texto); }
-  .risco { width:1px; height:30px; background:#0F3F3626; }
+  .logo { width:660px; position:relative; }
+
+  .assinatura { position:relative; display:flex; flex-direction:column; align-items:center; gap:14px; }
+  .fio-curto { width:220px; height:2px; border-radius:2px;
+               background:linear-gradient(90deg,transparent,var(--menta-2),var(--marca),var(--menta-2),transparent); }
+  .assinatura span { font-size:28px; font-weight:600; letter-spacing:.04em; color:var(--verde); }
+  .assinatura small { font-size:23px; font-weight:500; letter-spacing:.03em; color:var(--texto); }
 </style>
 </head>
 <body>
-  <img class="foto" src="../assets/profissional/dra-nayane-sobre.webp" alt="">
-
-  <div class="texto">
-    <img class="logo" src="../assets/marca/logo-completa.png" alt="">
-    <div class="rotulo">Ortodontia em Aracaju</div>
-    <h1>O sorriso dos sonhos,<em>sem passar anos usando aparelho?</em></h1>
-    <div class="pills">
-      <span class="pill">Aparelho metálico e de porcelana</span>
-      <span class="pill">Convênio ou particular</span>
-    </div>
-  </div>
-
-  <div class="rodape">
-    <strong>Dra. Nayane Moreno</strong>
-    <i class="risco"></i>
-    <span>Cirurgiã-Dentista · CRO-SE 2301</span>
+  <div class="brilho"></div>
+  <img class="logo" src="../assets/marca/logo-completa.png" alt="">
+  <div class="assinatura">
+    <i class="fio-curto"></i>
+    <span>Ortodontia em Aracaju</span>
+    <small>Cirurgiã-Dentista · CRO-SE 2301</small>
   </div>
 </body>
 </html>

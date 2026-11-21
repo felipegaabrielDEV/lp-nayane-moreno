@@ -1,24 +1,46 @@
-// Gera a imagem do cartão de compartilhamento a partir de ferramentas/cartao-compartilhar.html.
-// Uso, na raiz do repositório:  node ferramentas/gerar-cartao.js
-// Salva em assets/compartilhar/ com a data do dia no nome. Depois, troque o endereço nas meta tags og:image
-// e twitter:image do index.html (o WhatsApp guarda a prévia antiga por muito tempo).
+// Gera a imagem do cartão de compartilhamento (a que aparece quando alguém manda o link no WhatsApp).
+//
+// Uso, na raiz do repositório:
+//   node ferramentas/gerar-cartao.js          -> cartão QUADRADO com a logo (o que está no ar)
+//   node ferramentas/gerar-cartao.js foto     -> cartão 1200 x 630 com a foto da Dra. (versão guardada)
+//
+// Salva em assets/compartilhar/ com a data do dia no nome. Depois:
+//   1. converta para JPG (menor e aceito por todas as redes);
+//   2. troque o endereço nas meta tags og:image e twitter:image do index.html, e a altura em og:image:height.
+// O nome do arquivo precisa mudar a cada versão: o WhatsApp guarda a prévia antiga por muito tempo.
 const { chromium } = require("playwright");
 const path = require("path");
 
+// Cada modelo tem o seu tamanho. O quadrado aparece maior na conversa do WhatsApp;
+// o de 1200 x 630 é o formato clássico do Facebook e do LinkedIn.
+const MODELOS = {
+    quadrado: { arquivo: "cartao-compartilhar.html", largura: 1200, altura: 1200 },
+    foto: { arquivo: "cartao-compartilhar-foto.html", largura: 1200, altura: 630 },
+};
+
 (async () => {
+    const escolha = (process.argv[2] || "quadrado").toLowerCase();
+    const modelo = MODELOS[escolha];
+    if (!modelo) {
+        console.error(`Modelo desconhecido: "${escolha}". Use "quadrado" ou "foto".`);
+        process.exit(1);
+    }
+
     const raiz = path.resolve(__dirname, "..");
     const hoje = new Date().toISOString().slice(0, 10).replace(/-/g, "");
-    const saida = path.join(raiz, "assets", "compartilhar", `compartilhar-${hoje}.png`);
+    const saida = path.join(raiz, "assets", "compartilhar", `compartilhar-${hoje}-${escolha}.png`);
 
     const navegador = await chromium.launch();
-    // 1200 × 630 px é o tamanho que o WhatsApp, o Facebook e o LinkedIn esperam.
-    const pagina = await navegador.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 });
-    await pagina.goto("file://" + path.join(__dirname, "cartao-compartilhar.html"));
+    const pagina = await navegador.newPage({
+        viewport: { width: modelo.largura, height: modelo.altura },
+        deviceScaleFactor: 1, // 1 para a imagem sair no tamanho exato em pixels
+    });
+    await pagina.goto("file://" + path.join(__dirname, modelo.arquivo));
     await pagina.evaluate(async () => { await document.fonts.ready; }); // espera a Montserrat carregar
     await pagina.waitForTimeout(1500);
     await pagina.screenshot({ path: saida });
     await navegador.close();
 
-    console.log("Cartão gerado em " + saida);
-    console.log("Converta para JPG (menor e aceito por todas as redes) antes de publicar.");
+    console.log(`Cartão "${escolha}" (${modelo.largura} x ${modelo.altura}) gerado em ${saida}`);
+    console.log("Converta para JPG e atualize as meta tags og:image do index.html.");
 })();
