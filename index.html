@@ -647,10 +647,9 @@
     </section>
 
     <!-- =========================== AVALIAÇÕES (condicionado) =========================== -->
-    <!-- AVALIAÇÕES DO GOOGLE (widget Elfsight), liberado pela Dra. Nayane.
-         O widget é de terceiro (Elfsight/Google) e o aviso de cookies só entra na prévia 2; por isso o script NÃO carrega sozinho:
-         só depois do clique em "Ver avaliações" (consentimento explícito). Ao existir o aviso de cookies, trocar o clique pelo aceite (script.js, bloco "Avaliações do Google").
-         Falta: norma do CFO conferida e política de privacidade citando Google/Elfsight.
+    <!-- AVALIAÇÕES DO GOOGLE (widget Elfsight), liberado pela Dra. Nayane. Cores e idioma configurados no painel do Elfsight.
+         O script.js baixa o widget só quando a seção chega perto da tela (bloco "Avaliações do Google"), para não pesar a abertura do site.
+         Pendências: aviso de cookies (prévia 2: carregar o widget só após o aceite), política de privacidade citando Google/Elfsight e norma do CFO conferida.
          ID do widget (conta Elfsight só da Nayane; não reutilizar o ID de outros clientes): 34214394-b603-4c9b-b271-f203c15749db -->
     <section class="secao-curta" id="avaliacoes" aria-labelledby="avaliacoes-titulo">
         <div class="container">
@@ -659,12 +658,7 @@
                     <span class="rotulo">Avaliações</span>
                     <h2 id="avaliacoes-titulo">O que os pacientes dizem no Google</h2>
                 </div>
-                <div class="avaliacoes-moldura" data-avaliacoes-widget>
-                    <div class="avaliacoes-aviso">
-                        <p>Ao ver as avaliações, o conteúdo é carregado do Google e do Elfsight, que podem usar cookies.</p>
-                        <button type="button" class="botao botao-contorno" data-avaliacoes-carregar>Ver avaliações do Google</button>
-                    </div>
-                </div>
+                <div class="avaliacoes-moldura" data-avaliacoes-widget></div>
             </div>
         </div>
     </section>
