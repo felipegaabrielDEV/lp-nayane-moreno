@@ -1,0 +1,65 @@
+<!-- CARTÃO DE COMPARTILHAMENTO (a imagem que aparece quando alguém manda o link no WhatsApp, Instagram, etc.).
+     VERSÃO GUARDADA (não é a que está no ar): 1200 x 630, com a foto da Dra. Para voltar a usá-la,
+     gere a imagem e troque o nome do arquivo e a altura nas meta tags og:image do index.html.
+     Para gerar a imagem: abra este arquivo no navegador, deixe a janela em 1200 x 630 px e tire um print;
+     ou rode `ferramentas/gerar-cartao.js` (Playwright), que salva direto em assets/compartilhar/.
+     Ao mudar o cartao, salve a imagem com OUTRO nome (a data no fim) e troque o endereço nas meta tags og:image
+     e twitter:image do index.html — o WhatsApp guarda a prévia antiga por muito tempo.
+     Texto: sem preço, sem promessa de resultado e sem superlativo; a identificação (CRO-SE 2301) fica visível. -->
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root{
+    --marca:#16AD8E; --botao:#0F7A64; --verde:#0F3F36; --verde-2:#0F7A64;
+    --menta:#E8F6F1; --menta-2:#CDEBE2; --fundo:#F7F9F8; --tinta:#303B39; --texto:#56615F;
+  }
+  body { width:1200px; height:630px; overflow:hidden; font-family:"Montserrat",sans-serif;
+         background:linear-gradient(120deg,#FFFFFF 0%,var(--fundo) 52%,var(--menta) 100%); position:relative; }
+
+  /* Foto sem moldura, encostando na borda e derretendo no fundo pela esquerda */
+  .foto { position:absolute; right:0; bottom:0; width:540px; height:630px;
+          object-fit:cover; object-position:58% 8%;
+          -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22%,#000 100%); }
+
+  .texto { position:absolute; left:64px; top:66px; width:600px; }
+  .logo { height:80px; margin-bottom:38px; }
+  .rotulo { display:flex; align-items:center; gap:12px; font-size:16px; font-weight:700;
+            letter-spacing:.16em; text-transform:uppercase; color:var(--botao); margin-bottom:20px; }
+  .rotulo::before { content:""; width:32px; height:3px; border-radius:2px; background:var(--marca); }
+  h1 { font-size:54px; line-height:1.12; font-weight:700; color:var(--tinta); letter-spacing:-.015em; }
+  h1 em { display:block; font-style:normal; font-weight:400; color:var(--verde-2); margin-top:8px; }
+  .pills { display:flex; gap:10px; margin-top:34px; flex-wrap:wrap; }
+  .pill { padding:11px 19px; border-radius:999px; background:#fff; border:1px solid var(--menta-2);
+          font-size:16px; font-weight:600; color:var(--verde); box-shadow:0 6px 18px -12px #0F3F3640; }
+
+  /* Assinatura: identificação profissional e endereço do site */
+  .rodape { position:absolute; left:64px; bottom:48px; display:flex; align-items:center; gap:18px; }
+  .rodape strong { font-size:19px; font-weight:700; color:var(--verde); }
+  .rodape span { font-size:16px; font-weight:500; color:var(--texto); }
+  .risco { width:1px; height:30px; background:#0F3F3626; }
+</style>
+</head>
+<body>
+  <img class="foto" src="../assets/profissional/dra-nayane-sobre.webp" alt="">
+
+  <div class="texto">
+    <img class="logo" src="../assets/marca/logo-completa.png" alt="">
+    <div class="rotulo">Ortodontia em Aracaju</div>
+    <h1>O sorriso dos sonhos,<em>sem passar anos usando aparelho?</em></h1>
+    <div class="pills">
+      <span class="pill">Aparelho metálico e de porcelana</span>
+      <span class="pill">Convênio ou particular</span>
+    </div>
+  </div>
+
+  <div class="rodape">
+    <strong>Dra. Nayane Moreno</strong>
+    <i class="risco"></i>
+    <span>Cirurgiã-Dentista · CRO-SE 2301</span>
+  </div>
+</body>
+</html>
