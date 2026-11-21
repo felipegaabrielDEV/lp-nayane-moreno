@@ -47,7 +47,7 @@ Dados de acesso, CPF e pedidos ficam fora deste repositório.
 | **Atendimento** | Fotos da Dra. atendendo (grade no computador, carrossel no celular), com visualização ampliada |
 | **Consultório** | Galeria com as fotos do consultório (setas, deslize e teclado) |
 | **Como chegar** | Endereço, horário e botões que abrem o **perfil da Dra. no Google Maps** |
-| **Avaliações do Google** | **Oculta** (atributo `hidden`) até a liberação; ver pendências |
+| **Avaliações do Google** | Widget do Elfsight (4,9 de 5, 202 avaliações em 21/11/2026), liberado pela Dra.; carrega ao chegar perto da seção; ver pendências |
 | **Perguntas frequentes** | Perguntas em acordeão acessível |
 | **Chamada final e rodapé** | Contato, localização, horário e identificação profissional |
 
@@ -98,7 +98,7 @@ HTML, CSS e JavaScript puros, sem framework nem build, publicados pelo GitHub Pa
 - Número do WhatsApp: `<meta name="whatsapp-number">` no `<head>` (só dígitos, com 55 e DDD).
 - Mensagem de cada botão: objeto `mensagens` em `script.js`, pela origem (`data-wa-origin`).
 - Cores e fontes: tokens no início de `styles.css`.
-- Publicar as Avaliações: trocar o texto do bloco `#avaliacoes` e apagar o atributo `hidden` da `<section>`.
+- Avaliações: ID do widget no bloco "Avaliações do Google" do `script.js` (conta Elfsight só da Nayane; não reutilizar o ID de outro cliente). Cores, idioma e filtros ficam no painel do Elfsight, sem novo envio de código.
 - Lançamento: remover `<meta name="robots" content="noindex, nofollow">` do `<head>` só com a aprovação final.
 
 ---
@@ -126,7 +126,8 @@ Depois acesse `http://localhost:8000`.
 
 - **Identidade e estrutura:** logomarca, cores e tipografia do manual da marca; seções completas.
 - **Conteúdo:** textos conferidos contra as respostas da Dra.; alinhador removido; faixa do topo com 6 cartões; antes e atual e depoimento em vídeo publicados com autorização.
-- **Ajustes finais:** botão de prévia retirado do site; bloco de Avaliações oculto; botões "Como chegar" apontam para o perfil do Google Maps; espaçamento do bloco de convênios.
+- **Ajustes finais:** botão de prévia retirado do site; bloco de Avaliações preparado; botões "Como chegar" apontam para o perfil do Google Maps; espaçamento do bloco de convênios.
+- **Avaliações do Google (21/11/2026):** widget do Elfsight (plano grátis, conta própria da Nayane) nas cores do site, liberado pela Dra.; carrega sozinho ao chegar perto da seção.
 - **Domínio:** `dranayanemorenoortodontia.com.br` no ar com HTTPS.
 - **Documentação:** pasta da cliente no Drive reorganizada, com os questionários respondidos pela Dra., os estudos da agência e um mapa do projeto, "Leia primeiro" (ver "Documentação no Drive").
 
@@ -153,6 +154,7 @@ O material estratégico fica no **Google Drive**, na pasta da Dra. Nayane, e **n
 ## 🗺️ Próximas etapas (prévia 2)
 
 - Formulário curto antes do WhatsApp.
+- Avaliações do Google: carregar o widget só depois do aceite de cookies.
 - Links da Tintim por origem (UTM), Google Tag Manager com Modo de Consentimento e aviso de cookies.
 - Política de privacidade, página 404, imagem de compartilhamento 1200 × 630 e dados para o Google (`Dentist`).
 - Mapa do Google incorporado no bloco do consultório.
@@ -175,7 +177,11 @@ Conferência feita em 13/11/2026 contra os quatro documentos da cliente no Drive
 **Ainda abertas** (revisão de 19/11/2026)
 
 *Com a Dra. Nayane*
-- [ ] **Avaliações do Google** (bloco OCULTO, atributo `hidden` em `#avaliacoes`): o link do perfil já está nos botões de "Como chegar"; falta a liberação do uso das avaliações (norma do CFO) e a escolha de quais destacar
+- [x] **Avaliações do Google:** liberadas pela Dra. Nayane em 21/11/2026; widget no ar, carregando direto
+- [ ] **Avaliações, norma do CFO:** conferir a norma vigente do CFO e do CRO-SE sobre exibir avaliações de pacientes (a autorização da Dra. não substitui)
+- [ ] **Avaliações, privacidade (LGPD):** o widget carrega scripts do Google e do Elfsight (nome e foto de quem avaliou). Hoje carrega sem aviso de cookies; na prévia 2, carregar só após o aceite e citar Google e Elfsight na política de privacidade
+- [ ] **Avaliações, Elfsight:** confirmar no painel o idioma em português, os filtros (nota mínima 4 e palavras ocultas como preço, melhor, rápido, resultado), a opção de ocultar a foto de quem avalia e que o widget está publicado. Plano grátis: 1.000 visualizações por mês e selo "Free Google Reviews Widget" (tirar o selo exige plano pago); conferir o que acontece ao passar do limite
+- [ ] **Avaliações, texto dos clientes:** o Google mostra o que o paciente escreveu; se aparecer preço, "melhor" ou promessa de resultado, ocultar pelo filtro do Elfsight. Hoje aparece um nome de perfil não pessoal ("Vídeos Edificadores")
 - [ ] **Convênios na ortodontia:** o topo e o bloco Convênios mostram 4 logos, mas a pergunta "Meu convênio cobre o aparelho?" cita só SulAmérica e Amil. Confirmar se Petrobras e Porto Seguro cobrem ortodontia e ajustar o texto
 - [ ] **Idade mínima da ortodontia:** o site diz 11 anos (Profissional, P10), mas o Persona diz "acima de 12" (P02)
 - [ ] **Copy do topo:** "sorriso dos sonhos, sem passar anos usando aparelho?" pode ser lida como promessa de prazo. Alternativa proposta: "Aparelho metálico ou de porcelana: qual combina com você?"
