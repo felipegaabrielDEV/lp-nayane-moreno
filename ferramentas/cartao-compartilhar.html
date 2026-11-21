@@ -1,7 +1,8 @@
 <!-- CARTÃO DE COMPARTILHAMENTO (a imagem que aparece quando alguém manda o link no WhatsApp, Instagram, etc.).
-     Para gerar a imagem: abra este arquivo no navegador, deixe a janela em 1200 × 630 px e tire um print;
+     Versão no ar: foto do bloco "Sobre", sem moldura, para o rosto aparecer maior na prévia pequena do WhatsApp.
+     Para gerar a imagem: abra este arquivo no navegador, deixe a janela em 1200 x 630 px e tire um print;
      ou rode `ferramentas/gerar-cartao.js` (Playwright), que salva direto em assets/compartilhar/.
-     Ao mudar o cartão, salve a imagem com OUTRO nome (a data no fim) e troque o endereço nas meta tags og:image
+     Ao mudar o cartao, salve a imagem com OUTRO nome (a data no fim) e troque o endereço nas meta tags og:image
      e twitter:image do index.html — o WhatsApp guarda a prévia antiga por muito tempo.
      Texto: sem preço, sem promessa de resultado e sem superlativo; a identificação (CRO-SE 2301) fica visível. -->
 <!doctype html>
@@ -16,58 +17,33 @@
     --menta:#E8F6F1; --menta-2:#CDEBE2; --fundo:#F7F9F8; --tinta:#303B39; --texto:#56615F;
   }
   body { width:1200px; height:630px; overflow:hidden; font-family:"Montserrat",sans-serif;
-         background:linear-gradient(135deg,#FFFFFF 0%,var(--fundo) 45%,var(--menta) 100%); position:relative; }
+         background:linear-gradient(120deg,#FFFFFF 0%,var(--fundo) 52%,var(--menta) 100%); position:relative; }
 
-  /* Arco menta com a foto dentro, igual ao topo do site */
-  .retrato { position:absolute; right:58px; bottom:0; width:468px; height:556px;
-             border-radius:234px 234px 0 0; overflow:hidden;
-             background:linear-gradient(180deg,var(--menta) 0%,#DCF0E9 100%); }
-  .retrato img { width:100%; height:100%; object-fit:cover; object-position:50% 4%; }
-  .retrato::after { content:""; position:absolute; inset:0; border-radius:inherit;
-                    box-shadow:inset 0 0 0 1px #16AD8E26; }
+  /* Foto sem moldura, encostando na borda e derretendo no fundo pela esquerda */
+  .foto { position:absolute; right:0; bottom:0; width:540px; height:630px;
+          object-fit:cover; object-position:58% 8%;
+          -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22%,#000 100%); }
 
-  /* Fio metálico com o bráquete, detalhe da marca, arcando sobre o retrato */
-  .fio { position:absolute; right:34px; top:8px; width:516px; height:84px; }
-
-  .texto { position:absolute; left:64px; top:60px; width:620px; }
-  .logo { height:76px; margin-bottom:34px; }
+  .texto { position:absolute; left:64px; top:66px; width:600px; }
+  .logo { height:80px; margin-bottom:38px; }
   .rotulo { display:flex; align-items:center; gap:12px; font-size:16px; font-weight:700;
-            letter-spacing:.16em; text-transform:uppercase; color:var(--botao); margin-bottom:18px; }
+            letter-spacing:.16em; text-transform:uppercase; color:var(--botao); margin-bottom:20px; }
   .rotulo::before { content:""; width:32px; height:3px; border-radius:2px; background:var(--marca); }
-  h1 { font-size:50px; line-height:1.14; font-weight:700; color:var(--tinta); letter-spacing:-.01em; }
-  h1 em { display:block; font-style:normal; font-weight:400; color:var(--verde-2); margin-top:6px; }
-  .pills { display:flex; gap:10px; margin-top:30px; flex-wrap:wrap; }
-  .pill { padding:10px 18px; border-radius:999px; background:#fff; border:1px solid var(--menta-2);
+  h1 { font-size:54px; line-height:1.12; font-weight:700; color:var(--tinta); letter-spacing:-.015em; }
+  h1 em { display:block; font-style:normal; font-weight:400; color:var(--verde-2); margin-top:8px; }
+  .pills { display:flex; gap:10px; margin-top:34px; flex-wrap:wrap; }
+  .pill { padding:11px 19px; border-radius:999px; background:#fff; border:1px solid var(--menta-2);
           font-size:16px; font-weight:600; color:var(--verde); box-shadow:0 6px 18px -12px #0F3F3640; }
 
-  /* Cartão de identificação sobre a foto */
-  .cartao { position:absolute; right:338px; bottom:58px; padding:16px 22px; border-radius:16px;
-            background:#fff; box-shadow:0 20px 44px -22px #0F3F3666; border:1px solid #FFFFFF; min-width:290px; }
-  .cartao strong { display:block; font-size:21px; font-weight:700; color:var(--tinta); }
-  .cartao span { display:block; margin-top:3px; font-size:15px; font-weight:500; color:var(--texto); }
-
-  .site { position:absolute; left:64px; bottom:54px; font-size:17px; font-weight:600;
-          letter-spacing:.02em; color:var(--verde-texto,#4F6B66); }
+  /* Assinatura: identificação profissional e endereço do site */
+  .rodape { position:absolute; left:64px; bottom:48px; display:flex; align-items:center; gap:18px; }
+  .rodape strong { font-size:19px; font-weight:700; color:var(--verde); }
+  .rodape span { font-size:16px; font-weight:500; color:var(--texto); }
+  .risco { width:1px; height:30px; background:#0F3F3626; }
 </style>
 </head>
 <body>
-  <svg class="fio" viewBox="0 0 520 90" fill="none" aria-hidden="true">
-    <defs>
-      <linearGradient id="g" x1="0" y1="0" x2="520" y2="0" gradientUnits="userSpaceOnUse">
-        <stop offset="0" stop-color="#AEBDBA"/><stop offset=".22" stop-color="#E6EDEC"/>
-        <stop offset=".5" stop-color="#9FB2AE"/><stop offset=".78" stop-color="#E6EDEC"/>
-        <stop offset="1" stop-color="#AEBDBA"/>
-      </linearGradient>
-    </defs>
-    <path d="M6 16 Q258 92 510 16" stroke="url(#g)" stroke-width="3" stroke-linecap="round"/>
-    <g transform="translate(258,50)">
-      <rect x="-19" y="-11" width="38" height="22" rx="6" fill="#CDEBE2" stroke="#16AD8E" stroke-width="2"/>
-      <rect x="-6" y="-7" width="4" height="14" rx="2" fill="#16AD8E"/>
-      <rect x="2" y="-7" width="4" height="14" rx="2" fill="#16AD8E"/>
-    </g>
-  </svg>
-
-  <div class="retrato"><img src="../assets/profissional/dra-nayane-topo-900.webp" alt=""></div>
+  <img class="foto" src="../assets/profissional/dra-nayane-sobre.webp" alt="">
 
   <div class="texto">
     <img class="logo" src="../assets/marca/logo-completa.png" alt="">
@@ -79,11 +55,10 @@
     </div>
   </div>
 
-  <div class="cartao">
+  <div class="rodape">
     <strong>Dra. Nayane Moreno</strong>
+    <i class="risco"></i>
     <span>Cirurgiã-Dentista · CRO-SE 2301</span>
   </div>
-
-  <div class="site">dranayanemorenoortodontia.com.br</div>
 </body>
 </html>
