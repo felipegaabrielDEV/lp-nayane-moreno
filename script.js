@@ -339,12 +339,11 @@
         preparar();
     }
 
-    /* Avaliações do Google (Elfsight): o script de terceiro só é baixado depois do clique em "Ver avaliações" (consentimento explícito),
-       porque o aviso de cookies ainda não existe (prévia 2). Quando existir, carregar após o aceite em vez do clique. */
-    const botaoAval = document.querySelector("[data-avaliacoes-carregar]");
+    /* Avaliações do Google (Elfsight): o script de terceiro só é baixado quando a seção chega perto da tela (400 px antes),
+       para não pesar a abertura do site. Quando o aviso de cookies existir (prévia 2), carregar só após o aceite. */
     const molduraAval = document.querySelector("[data-avaliacoes-widget]");
-    if (botaoAval && molduraAval) {
-        botaoAval.addEventListener("click", () => {
+    if (molduraAval) {
+        const carregarAvaliacoes = () => {
             const loader = document.createElement("script");
             loader.src = "https://elfsightcdn.com/platform.js";
             loader.async = true;
@@ -352,8 +351,12 @@
             const widget = document.createElement("div");
             widget.className = "elfsight-app-34214394-b603-4c9b-b271-f203c15749db";
             widget.setAttribute("data-elfsight-app-lazy", "");
-            molduraAval.replaceChildren(widget);
-        }, { once: true });
+            molduraAval.appendChild(widget);
+        };
+        if ("IntersectionObserver" in window) {
+            const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { obs.disconnect(); carregarAvaliacoes(); } }, { rootMargin: "400px 0px" });
+            obs.observe(molduraAval);
+        } else { carregarAvaliacoes(); }
     }
 
     const ano = document.querySelector("[data-ano]");
