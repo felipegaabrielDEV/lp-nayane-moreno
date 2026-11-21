@@ -339,6 +339,25 @@
         preparar();
     }
 
+    /* Prévia privada das avaliações do Google: só abre com ?previa=avaliacoes no endereço.
+       Sem o parâmetro, a seção continua oculta e o script do Elfsight (terceiro) nem é baixado.
+       REMOVER este bloco quando as avaliações forem liberadas (e então carregar o widget só após o aceite de cookies). */
+    if (new URLSearchParams(location.search).get("previa") === "avaliacoes") {
+        const secao = document.getElementById("avaliacoes");
+        const moldura = document.querySelector("[data-avaliacoes-widget]");
+        if (secao && moldura) {
+            secao.hidden = false;
+            const loader = document.createElement("script");
+            loader.src = "https://elfsightcdn.com/platform.js";
+            loader.async = true;
+            document.head.appendChild(loader);
+            const widget = document.createElement("div");
+            widget.className = "elfsight-app-34214394-b603-4c9b-b271-f203c15749db";
+            widget.setAttribute("data-elfsight-app-lazy", "");
+            moldura.appendChild(widget);
+        }
+    }
+
     const ano = document.querySelector("[data-ano]");
     if (ano) ano.textContent = new Date().getFullYear();
 })();
