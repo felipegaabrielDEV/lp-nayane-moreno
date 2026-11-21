@@ -1,8 +1,8 @@
 // Gera a imagem do cartão de compartilhamento (a que aparece quando alguém manda o link no WhatsApp).
 //
 // Uso, na raiz do repositório:
-//   node ferramentas/gerar-cartao.js          -> cartão QUADRADO com a logo (o que está no ar)
-//   node ferramentas/gerar-cartao.js foto     -> cartão 1200 x 630 com a foto da Dra. (versão guardada)
+//   node ferramentas/gerar-cartao.js          -> cartão 1200 x 630 com a foto da Dra. (o que está no ar)
+//   node ferramentas/gerar-cartao.js logo     -> cartão QUADRADO com a logomarca (versão guardada)
 //
 // Salva em assets/compartilhar/ com a data do dia no nome. Depois:
 //   1. converta para JPG (menor e aceito por todas as redes);
@@ -11,18 +11,18 @@
 const { chromium } = require("playwright");
 const path = require("path");
 
-// Cada modelo tem o seu tamanho. O quadrado aparece maior na conversa do WhatsApp;
-// o de 1200 x 630 é o formato clássico do Facebook e do LinkedIn.
+// Cada modelo tem o seu tamanho. O de 1200 × 630 é o formato clássico do Facebook e do LinkedIn;
+// o quadrado aparece maior na conversa do WhatsApp.
 const MODELOS = {
-    quadrado: { arquivo: "cartao-compartilhar.html", largura: 1200, altura: 1200 },
-    foto: { arquivo: "cartao-compartilhar-foto.html", largura: 1200, altura: 630 },
+    foto: { arquivo: "cartao-compartilhar.html", largura: 1200, altura: 630 },
+    logo: { arquivo: "cartao-compartilhar-logo.html", largura: 1200, altura: 1200 },
 };
 
 (async () => {
-    const escolha = (process.argv[2] || "quadrado").toLowerCase();
+    const escolha = (process.argv[2] || "foto").toLowerCase();
     const modelo = MODELOS[escolha];
     if (!modelo) {
-        console.error(`Modelo desconhecido: "${escolha}". Use "quadrado" ou "foto".`);
+        console.error(`Modelo desconhecido: "${escolha}". Use "foto" ou "logo".`);
         process.exit(1);
     }
 

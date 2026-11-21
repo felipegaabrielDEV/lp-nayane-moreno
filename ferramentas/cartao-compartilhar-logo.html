@@ -1,0 +1,47 @@
+<!-- CARTÃO DE COMPARTILHAMENTO, VERSÃO GUARDADA (não é a que está no ar).
+     Quadrado, 1200 x 1200, com a logo ao centro: no WhatsApp a prévia quadrada aparece grande.
+     Para gerar a imagem:  node ferramentas/gerar-cartao.js logo
+     Ao mudar o cartão, salve a imagem com OUTRO nome (a data no fim) e troque o endereço nas meta tags og:image
+     e twitter:image do index.html — o WhatsApp guarda a prévia antiga por muito tempo.
+     Texto: sem preço, sem promessa de resultado e sem superlativo; a identificação (CRO-SE 2301) fica visível.
+     A versão no ar, com a foto da Dra., está em cartao-compartilhar.html. -->
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root{ --marca:#16AD8E; --verde:#0F3F36; --menta:#E8F6F1; --menta-2:#CDEBE2; --texto:#56615F; }
+
+  /* Cartão QUADRADO (1200 × 1200): no WhatsApp a prévia quadrada aparece grande,
+     como no exemplo da Nutri Anna. A logo ocupa o centro, com bastante respiro.
+     O conteúdo cabe na faixa do meio (1200 × 628), que é o recorte usado pelo Facebook e pelo LinkedIn:
+     assim a logo não é cortada em nenhuma rede. */
+  body { width:1200px; height:1200px; overflow:hidden; background:#FFFFFF;
+         font-family:"Montserrat",sans-serif; display:flex; flex-direction:column;
+         align-items:center; justify-content:center; gap:44px; position:relative; }
+
+  /* Arco menta de fundo, bem suave, para não ficar uma caixa branca vazia */
+  .brilho { position:absolute; inset:0; background:
+      radial-gradient(760px 560px at 50% 42%, #E8F6F180 0%, transparent 70%); }
+
+  .logo { width:660px; position:relative; }
+
+  .assinatura { position:relative; display:flex; flex-direction:column; align-items:center; gap:14px; }
+  .fio-curto { width:220px; height:2px; border-radius:2px;
+               background:linear-gradient(90deg,transparent,var(--menta-2),var(--marca),var(--menta-2),transparent); }
+  .assinatura span { font-size:28px; font-weight:600; letter-spacing:.04em; color:var(--verde); }
+  .assinatura small { font-size:23px; font-weight:500; letter-spacing:.03em; color:var(--texto); }
+</style>
+</head>
+<body>
+  <div class="brilho"></div>
+  <img class="logo" src="../assets/marca/logo-completa.png" alt="">
+  <div class="assinatura">
+    <i class="fio-curto"></i>
+    <span>Ortodontia em Aracaju</span>
+    <small>Cirurgiã-Dentista · CRO-SE 2301</small>
+  </div>
+</body>
+</html>
