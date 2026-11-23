@@ -1,6 +1,8 @@
 # 🦷 Dra. Nayane Moreno — Landing Page | Ortodontia em Aracaju
 
 > 🚧 **Prévia no ar, ainda fora do Google.** Endereço: **https://dranayanemorenoortodontia.com.br**. A página segue com `noindex, nofollow` até a aprovação final; só sai no lançamento.
+>
+> 🧪 **Prévia 2 em aprovação:** **https://dranayanemorenoortodontia.com.br/previa-2/** (formulário antes do WhatsApp, aviso de cookies, Google Tag Manager, política de privacidade e 404). O site oficial não muda até o Felipe aprovar; ver "Prévia 2".
 
 Landing page da **Dra. Nayane Moreno**, Cirurgiã-Dentista (CRO-SE 2301) em Aracaju/SE, focada em **Ortodontia**: captar pessoas interessadas em colocar aparelho e levá-las a agendar a avaliação pelo WhatsApp.
 
@@ -82,7 +84,9 @@ HTML, CSS e JavaScript puros, sem framework nem build, publicados pelo GitHub Pa
 ├── styles.css          # Identidade, layout responsivo e animações (tokens no :root)
 ├── script.js           # Menu, WhatsApp, FAQ, galerias, visualização ampliada e revelar ao rolar
 ├── CNAME               # Domínio personalizado do GitHub Pages
-├── ferramentas/        # gerar-previa-privada.py: gera um HTML único para conferir o site offline
+├── previa-2/           # Prévia 2 em aprovação (cópia do site + formulário, cookies, GTM, política e 404)
+├── docs/               # gtm-passo-a-passo.md: como montar o painel do GTM (para o gestor de tráfego)
+├── ferramentas/        # gerar-previa-privada.py (HTML único offline) e gerar-cartao.js (imagem de compartilhamento)
 └── assets/
     ├── marca/          # Logomarca (ícone, completa e favicon)
     ├── profissional/   # Fotos da Dra. Nayane (WebP)
@@ -91,7 +95,8 @@ HTML, CSS e JavaScript puros, sem framework nem build, publicados pelo GitHub Pa
     ├── situacoes/      # Fotos ilustrativas de "Para quem é"
     ├── aparelhos/      # Fotos ilustrativas dos aparelhos
     ├── casos/          # Antes e atual do caso e vídeo de depoimento
-    └── convenios/      # Logos dos convênios
+    ├── convenios/      # Logos dos convênios
+    └── compartilhar/   # Imagem que aparece quando o link é compartilhado (WhatsApp, redes)
 ```
 
 **Onde mexer:**
@@ -99,6 +104,7 @@ HTML, CSS e JavaScript puros, sem framework nem build, publicados pelo GitHub Pa
 - Mensagem de cada botão: objeto `mensagens` em `script.js`, pela origem (`data-wa-origin`).
 - Cores e fontes: tokens no início de `styles.css`.
 - Avaliações: ID do widget no bloco "Avaliações do Google" do `script.js` (conta Elfsight só da Nayane; não reutilizar o ID de outro cliente). Cores, idioma e filtros ficam no painel do Elfsight, sem novo envio de código.
+- Imagem de compartilhamento: `ferramentas/cartao-compartilhar.html` (modelo) e `node ferramentas/gerar-cartao.js` (gera a imagem). Ao trocar, salvar com **outro nome de arquivo** e atualizar `og:image` e `twitter:image`: o WhatsApp guarda a prévia antiga.
 - Lançamento: remover `<meta name="robots" content="noindex, nofollow">` do `<head>` só com a aprovação final.
 
 ---
@@ -128,6 +134,8 @@ Depois acesse `http://localhost:8000`.
 - **Conteúdo:** textos conferidos contra as respostas da Dra.; alinhador removido; faixa do topo com 6 cartões; antes e atual e depoimento em vídeo publicados com autorização.
 - **Ajustes finais:** botão de prévia retirado do site; bloco de Avaliações preparado; botões "Como chegar" apontam para o perfil do Google Maps; espaçamento do bloco de convênios.
 - **Avaliações do Google (21/11/2026):** widget do Elfsight (plano grátis, conta própria da Nayane) nas cores do site, liberado pela Dra.; carrega sozinho ao chegar perto da seção.
+- **Imagem de compartilhamento (21/11/2026):** cartão 1200 × 630 com a foto da Dra., a logo e as cores do site. A Dra. escolheu esta entre duas opções; a versão com a logomarca fica guardada em `assets/compartilhar/` e `ferramentas/`.
+- **Prévia 2 (23/11/2026):** formulário antes do WhatsApp, aviso de cookies com Modo de Consentimento, Google Tag Manager, eventos, avaliações do Google só com permissão, política de privacidade e página 404, em `/previa-2/` para aprovação.
 - **Domínio:** `dranayanemorenoortodontia.com.br` no ar com HTTPS.
 - **Documentação:** pasta da cliente no Drive reorganizada, com os questionários respondidos pela Dra., os estudos da agência e um mapa do projeto, "Leia primeiro" (ver "Documentação no Drive").
 
@@ -151,13 +159,26 @@ O material estratégico fica no **Google Drive**, na pasta da Dra. Nayane, e **n
 
 ---
 
-## 🗺️ Próximas etapas (prévia 2)
+## 🧪 Prévia 2 (em aprovação)
 
-- Formulário curto antes do WhatsApp.
-- Avaliações do Google: carregar o widget só depois do aceite de cookies.
-- Links da Tintim por origem (UTM), Google Tag Manager com Modo de Consentimento e aviso de cookies.
-- Política de privacidade, página 404, imagem de compartilhamento 1200 × 630 e dados para o Google (`Dentist`).
-- Mapa do Google incorporado no bloco do consultório.
+**Onde ver:** https://dranayanemorenoortodontia.com.br/previa-2/ (a política fica em `/previa-2/politica-de-privacidade.html` e a 404 em `/previa-2/404.html`). Fora do Google e sem link no site oficial; o endereço é público para quem o tiver, não tem senha.
+
+**O que tem**
+- **Formulário antes do WhatsApp:** todo botão abre 4 perguntas do Roteiro (quem vai usar o aparelho, convênio, nome e WhatsApp). Depois, o WhatsApp abre com a mensagem do botão e as respostas. Gaveta no celular, foco preso, `Esc` fecha, máscara de telefone com DDD, `data-clarity-mask`.
+- **Aviso de cookies:** tudo negado por padrão; escolhas de Estatística, Marketing e Avaliações do Google; "Preferências de cookies" no rodapé e na política.
+- **Google Tag Manager** (`GTM-PN2GHRMF`) com Modo de Consentimento. GA4, Meta Pixel e Clarity entram **pelo painel do GTM**, não no código: passo a passo em [`docs/gtm-passo-a-passo.md`](docs/gtm-passo-a-passo.md).
+- **Eventos:** `generate_lead` (formulário enviado = **Lead**, a conversão dos botões) e `click_whatsapp` (= **Contact**), mais `form_open`, `form_start`, `form_error`, `section_view` e `consent_update`. Nome e telefone em texto aberto nunca vão ao `dataLayer`; o tipo de aparelho também não.
+- **Avaliações do Google:** só carregam com a permissão do aviso; sem ela, um quadro com o link para o Google.
+- **Política de privacidade** (rascunho para revisão jurídica) e **página 404**.
+
+**Testes feitos:** 320 a 1920 px sem rolagem horizontal (com aviso e formulário abertos), teclado e foco, consentimento negado não carrega Elfsight, nome e telefone fora do `dataLayer`, nenhum erro de JavaScript.
+
+**Para passar ao site oficial (depois da aprovação)**
+1. Mover os arquivos de `previa-2/` para a raiz, trocando `../assets/` por `assets/`, tirando o "[Prévia 2]" dos títulos e, na `404.html`, trocando `<base href="/previa-2/">` por `<base href="/">`.
+2. Criar o `sitemap.xml` e apagar a pasta `previa-2/`.
+3. Validar os eventos com o Felipe no modo Visualizar do GTM, já no endereço oficial.
+
+**Ainda fora da prévia 2:** mapa do Google incorporado no bloco do consultório.
 
 ---
 
@@ -179,8 +200,8 @@ Conferência feita em 13/11/2026 contra os quatro documentos da cliente no Drive
 *Com a Dra. Nayane*
 - [x] **Avaliações do Google:** liberadas pela Dra. Nayane em 21/11/2026; widget no ar, carregando direto
 - [ ] **Avaliações, norma do CFO:** conferir a norma vigente do CFO e do CRO-SE sobre exibir avaliações de pacientes (a autorização da Dra. não substitui)
-- [ ] **Avaliações, privacidade (LGPD):** o widget carrega scripts do Google e do Elfsight (nome e foto de quem avaliou). Hoje carrega sem aviso de cookies; na prévia 2, carregar só após o aceite e citar Google e Elfsight na política de privacidade
-- [ ] **Avaliações, Elfsight:** confirmar no painel o idioma em português, os filtros (nota mínima 4 e palavras ocultas como preço, melhor, rápido, resultado), a opção de ocultar a foto de quem avalia e que o widget está publicado. Plano grátis: 1.000 visualizações por mês e selo "Free Google Reviews Widget" (tirar o selo exige plano pago); conferir o que acontece ao passar do limite
+- [x] **Avaliações, privacidade (LGPD):** resolvido na prévia 2: o widget só carrega com a permissão do aviso de cookies e a política cita Google e Elfsight. Vale no site oficial quando a prévia 2 for aprovada
+- [ ] **Avaliações, Elfsight:** idioma em português confirmado (23/11/2026). Falta conferir no painel os filtros (nota mínima 4 e palavras ocultas como preço, melhor, rápido, resultado), a opção de ocultar a foto de quem avalia e que o widget está publicado. Plano grátis: 1.000 visualizações por mês e selo "Free Google Reviews Widget" (tirar o selo exige plano pago); conferir o que acontece ao passar do limite
 - [ ] **Avaliações, texto dos clientes:** o Google mostra o que o paciente escreveu; se aparecer preço, "melhor" ou promessa de resultado, ocultar pelo filtro do Elfsight. Hoje aparece um nome de perfil não pessoal ("Vídeos Edificadores")
 - [ ] **Convênios na ortodontia:** o topo e o bloco Convênios mostram 4 logos, mas a pergunta "Meu convênio cobre o aparelho?" cita só SulAmérica e Amil. Confirmar se Petrobras e Porto Seguro cobrem ortodontia e ajustar o texto
 - [ ] **Idade mínima da ortodontia:** o site diz 11 anos (Profissional, P10), mas o Persona diz "acima de 12" (P02)
@@ -188,12 +209,17 @@ Conferência feita em 13/11/2026 contra os quatro documentos da cliente no Drive
 - [ ] **"Ortopedia Facial" na logo do rodapé:** a logo completa (`assets/marca/logo-completa.png`) traz "Ortodontia & Ortopedia Facial". Confirmar o registro no CRO-SE; se não houver, o rodapé usa só o ícone
 - [ ] **Foto do diploma e dos certificados** (a Dra. perguntou o que é preciso e ainda não enviou)
 - [ ] **Autorização escrita das operadoras** para as logos dos convênios, se a Dra. tiver
-- [ ] **Política de privacidade:** nome de quem responde pelos dados de quem preenche o formulário (necessário para a prévia 2)
+- [ ] **Política de privacidade:** nome de quem responde pelos dados (a Dra. como pessoa física ou a empresa do consultório, com CNPJ). Está como `PENDENTE` na política da prévia 2
 - [ ] **Resultado sem promessa:** a Dra. quer destacar o resultado do tratamento; combinar como mostrar a evolução sem prometer resultado (regra de publicidade odontológica)
 
 *Com o gestor de tráfego*
-- [ ] **Códigos de rastreamento** (pedidos em 19/11/2026, aguardando): ID do Google Tag Manager, Pixel da Meta, conversão do Google Ads, GA4, Microsoft Clarity e links da Tintim por origem
-- [ ] **Regras do rastreamento a combinar:** Meta e Google Ads recebem só o nome do evento e o `event_id` (o Google Ads também o telefone em SHA-256, com consentimento); a posição do botão vai só ao GA4 e ao Clarity; `utm_campaign` sem nome de tratamento; Google Signals e autoConfig do Pixel desligados
+- [x] **Códigos de rastreamento:** recebidos em 23/11/2026 (GTM, GA4, Meta Pixel e Clarity). GTM instalado na prévia 2; os outros entram pelo painel do GTM
+- [x] **"Botões como lead":** resolvido. Todo botão abre o formulário, e o envio (`generate_lead`) é o Lead; o clique para o WhatsApp é Contact
+- [ ] **Montar o painel do GTM** seguindo [`docs/gtm-passo-a-passo.md`](docs/gtm-passo-a-passo.md), já com as regras do projeto (Meta e Google Ads só com o nome do evento e o `event_id`; `utm_campaign` sem nome de tratamento; Google Signals e autoConfig do Pixel desligados), e testar no modo Visualizar na prévia 2
+- [ ] **Token da Conversions API da Meta:** o guia avisa que foi compartilhado antes. Revogar e gerar outro, guardado só no servidor
+- [ ] **Google Ads:** ID e rótulo da conversão ("a definir" no guia)
+- [ ] **Tintim:** confirmar se vai usar; se sim, enviar os links por origem
+- [ ] **Google Search Console:** registro TXT no DNS (Registro.br, ver "Domínio e publicação") e depois a verificação no painel. Alternativa: meta tag de verificação no site
 
 *Com a agência*
 - [ ] **Cor oficial da marca:** o manual de identidade estima o verde em `#49B89F`; o site usa `#16AD8E`, conferido nos pixels da logo. Definir uma só e pedir o arquivo vetorial da logo
