@@ -58,9 +58,9 @@ Todos levam `event_id` (único), para as plataformas não contarem duas vezes e 
 - `form_id`: sempre `whatsapp_lead`.
 - `cta_position` (botão que abriu o formulário): `menu`, `menu_mobile`, `hero`, `situacoes`, `aparelhos`, `casos`, `convenios`, `particular`, `como_funciona`, `sobre`, `consultorio`, `horario`, `faq`, `cta_final`, `rodape`, `botao_flutuante`. Os dois botões de aparelho chegam como `aparelhos`, sem o tipo (metálico ou porcelana): tipo de tratamento de interesse não vai para as plataformas.
 - `perfil_paciente`: `adulto` ou `adolescente`.
-- `convenio`: `sim`, `particular` ou `nao_sei`. Quando a pessoa marca `sim`, o formulário pergunta **qual convênio** (Amil, SulAmérica, Porto Seguro, Petrobras ou Outro, com o nome digitado). **Esse nome vai só na mensagem do WhatsApp e nunca chega ao `dataLayer`**: não existe variável nem parâmetro para ele, e não deve ser criado no GTM.
+- `convenio`: `sim`, `particular` ou `nao_sei`. Quando a pessoa marca `sim`, o formulário pergunta **qual convênio** (Amil, SulAmérica, Porto Seguro ou Petrobras). **Esse nome vai só na mensagem do WhatsApp e nunca chega ao `dataLayer`**: não existe variável nem parâmetro para ele, e não deve ser criado no GTM.
 - `visit_origin`: `meta_ads`, `google_ads`, `instagram_bio`, `google_perfil` ou `direto`, lido das UTMs (ver seção 9).
-- `error_fields`: campos com erro, separados por vírgula: `paciente`, `convenio`, `operadora` (faltou escolher qual convênio), `outro` (faltou escrever o nome), `nome`, `whatsapp`.
+- `error_fields`: campos com erro, separados por vírgula: `paciente`, `convenio`, `operadora` (faltou escolher qual convênio), `nome`, `whatsapp`.
 - `section_name`: `aparelhos`, `evolucao_caso`, `convenios`, `sobre`, `avaliacoes`, `duvidas`.
 - `ec_phone_sha256`: telefone embaralhado (SHA-256 de `+55DDDNÚMERO`), só para as conversões otimizadas do Google Ads. É apagado do `dataLayer` logo depois do evento.
 
