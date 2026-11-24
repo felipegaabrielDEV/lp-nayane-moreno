@@ -2,7 +2,7 @@
 
 > 🚧 **Prévia no ar, ainda fora do Google.** Endereço: **https://dranayanemorenoortodontia.com.br**. A página segue com `noindex, nofollow` até a aprovação final; só sai no lançamento.
 >
-> ✅ **Prévia 2 aprovada e publicada** no endereço oficial: formulário antes do WhatsApp, aviso de cookies, Google Tag Manager, política de privacidade e 404. Ver "Prévia 2".
+> ✅ **Site aprovado pelo Felipe em 24/11/2026.** Prévia 2 publicada no endereço oficial: formulário antes do WhatsApp, aviso de cookies, Google Tag Manager, política de privacidade e 404. Ver "Prévia 2".
 
 Landing page da **Dra. Nayane Moreno**, Cirurgiã-Dentista (CRO-SE 2301) em Aracaju/SE, focada em **Ortodontia**: captar pessoas interessadas em colocar aparelho e levá-las a agendar a avaliação pelo WhatsApp.
 
@@ -138,6 +138,7 @@ Depois acesse `http://localhost:8000`.
 - **Conteúdo:** textos conferidos contra as respostas da Dra.; alinhador removido; faixa do topo com 6 cartões; antes e atual e depoimento em vídeo publicados com autorização.
 - **Ajustes finais:** botão de prévia retirado do site; bloco de Avaliações preparado; botões "Como chegar" apontam para o perfil do Google Maps; espaçamento do bloco de convênios.
 - **Avaliações do Google (21/11/2026):** widget do Elfsight (plano grátis, conta própria da Nayane) nas cores do site, liberado pela Dra.; carrega sozinho ao chegar perto da seção.
+- **Site aprovado (24/11/2026):** o Felipe aprovou o site pronto, no grupo. A Dra. Nayane foi avisada do que foi feito (formulário, aviso de cookies, política de privacidade e medição) e de que ainda falta a resposta dela sobre quem responde pelos dados. O lançamento (Google) fica para depois.
 - **Imagem de compartilhamento (21/11/2026):** cartão 1200 × 630 com a foto da Dra., a logo e as cores do site. A Dra. escolheu esta entre duas opções; a versão com a logomarca fica guardada em `assets/compartilhar/` e `ferramentas/`.
 - **Prévia 2 (aprovada pelo Felipe e publicada no endereço oficial):** formulário antes do WhatsApp, aviso de cookies com Modo de Consentimento, Google Tag Manager, eventos, avaliações do Google só com permissão, política de privacidade e página 404, em `/previa-2/` para aprovação.
 - **Domínio:** `dranayanemorenoortodontia.com.br` no ar com HTTPS.
@@ -221,6 +222,7 @@ Conferência feita em 13/11/2026 contra os quatro documentos da cliente no Drive
 *Com o gestor de tráfego*
 - [x] **Códigos de rastreamento:** recebidos em 23/11/2026 (GTM, GA4, Meta Pixel e Clarity). GTM instalado no site oficial; os outros entram pelo painel do GTM
 - [x] **"Botões como lead":** resolvido. Todo botão abre o formulário, e o envio (`generate_lead`) é o Lead; o clique para o WhatsApp é Contact
+- [x] **Site aprovado pelo Felipe** em 24/11/2026. Ele disse que alinha o restante com a agência; as quatro tarefas abaixo seguem em aberto até ele confirmar
 - [ ] **Montar o painel do GTM** seguindo [`docs/gtm-passo-a-passo.md`](docs/gtm-passo-a-passo.md), já com as regras do projeto (Meta e Google Ads só com o nome do evento e o `event_id`; `utm_campaign` sem nome de tratamento; Google Signals e autoConfig do Pixel desligados), e testar no modo Visualizar na prévia 2
 - [ ] **Token da Conversions API da Meta:** o guia avisa que foi compartilhado antes. Revogar e gerar outro, guardado só no servidor
 - [ ] **Google Ads:** ID e rótulo da conversão ("a definir" no guia)
