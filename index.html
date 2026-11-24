@@ -86,7 +86,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="assets/profissional/dra-nayane-topo-900.webp" imagesrcset="assets/profissional/dra-nayane-topo-560.webp 560w, assets/profissional/dra-nayane-topo-900.webp 900w" imagesizes="(min-width: 1024px) 460px, 86vw">
-    <link rel="stylesheet" href="styles.css?v=20261123-01">
+    <link rel="stylesheet" href="styles.css?v=20261124-01">
 </head>
 <body>
 <!-- Google Tag Manager (noscript): reserva para quem navega sem JavaScript -->
@@ -837,7 +837,7 @@
         <div class="lead-passo" id="lead-passo">
             <span class="rotulo">Dra. Nayane Moreno</span>
             <h2 id="lead-titulo">Agende sua avaliação pelo <em>WhatsApp</em></h2>
-            <p class="lead-intro" id="lead-intro">Quatro respostas rápidas e a conversa abre no WhatsApp com a mensagem pronta.</p>
+            <p class="lead-intro" id="lead-intro">Respostas rápidas e a conversa abre no WhatsApp com a mensagem pronta.</p>
 
             <form class="lead-form" id="lead-form" novalidate>
                 <fieldset class="lead-campo" id="lead-paciente">
@@ -858,6 +858,26 @@
                     </div>
                     <p class="lead-erro" id="lead-convenio-erro" hidden>Escolha uma opção.</p>
                 </fieldset>
+
+                <!-- Aparece só quando a pessoa marca "Sim" em convênio (lead-form.js). A recepção já sabe de qual plano se trata.
+                     Para mudar as opções, mexa aqui; o texto vai para a mensagem do WhatsApp (nunca para o rastreamento). -->
+                <fieldset class="lead-campo lead-subcampo" id="lead-operadora" hidden>
+                    <legend>Qual convênio?</legend>
+                    <div class="lead-escolhas">
+                        <label class="lead-escolha"><input type="radio" name="operadora" value="Amil"><span>Amil</span></label>
+                        <label class="lead-escolha"><input type="radio" name="operadora" value="SulAmérica"><span>SulAmérica</span></label>
+                        <label class="lead-escolha"><input type="radio" name="operadora" value="Porto Seguro"><span>Porto Seguro</span></label>
+                        <label class="lead-escolha"><input type="radio" name="operadora" value="Petrobras"><span>Petrobras</span></label>
+                        <label class="lead-escolha"><input type="radio" name="operadora" value="outro"><span>Outro</span></label>
+                    </div>
+                    <p class="lead-erro" id="lead-operadora-erro" hidden>Escolha o seu convênio.</p>
+                </fieldset>
+
+                <div class="lead-campo lead-subcampo" id="lead-outro-campo" hidden>
+                    <label for="lead-outro">Qual é o seu convênio?</label>
+                    <input id="lead-outro" name="outro" type="text" maxlength="40" placeholder="Nome do convênio" autocomplete="off">
+                    <p class="lead-erro" id="lead-outro-erro" hidden>Escreva o nome do convênio.</p>
+                </div>
 
                 <div class="lead-campo">
                     <label for="lead-nome">Como podemos te chamar?</label>
@@ -919,6 +939,6 @@
 <script src="eventos.js?v=20261123-01" defer></script>
 <script src="consent.js?v=20261123-01" defer></script>
 <script src="script.js?v=20261123-01" defer></script>
-<script src="lead-form.js?v=20261123-01" defer></script>
+<script src="lead-form.js?v=20261124-01" defer></script>
 </body>
 </html>

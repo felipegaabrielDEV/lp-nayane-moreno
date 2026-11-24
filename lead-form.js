@@ -30,6 +30,8 @@
     const campos = {
         paciente: document.getElementById("lead-paciente"),
         convenio: document.getElementById("lead-convenio"),
+        operadora: document.getElementById("lead-operadora"),   // "Qual convênio?", só com "Sim"
+        outro: document.getElementById("lead-outro"),           // nome do convênio, só com "Outro"
         nome: form.elements.nome,
         whatsapp: form.elements.whatsapp
     };
@@ -99,9 +101,13 @@
     });
 
     /* ---------- Validação ---------- */
+    const usaConvenio = () => valorDe("convenio") === "sim";
     const regras = {
         paciente: () => Boolean(valorDe("paciente")),
         convenio: () => Boolean(valorDe("convenio")),
+        // As duas perguntas do convênio só valem quando aparecem na tela
+        operadora: () => !usaConvenio() || Boolean(valorDe("operadora")),
+        outro: () => !usaConvenio() || valorDe("operadora") !== "outro" || campos.outro.value.trim().length >= 2,
         nome: () => campos.nome.value.trim().length >= 2,
         whatsapp: () => telefoneValido(campos.whatsapp.value)
     };
@@ -126,6 +132,29 @@
         if (alvo.tagName === "INPUT") alvo.addEventListener("blur", () => { if (alvo.value) marcarErro(nome, !regras[nome]()); });
     });
 
+    /* "Qual convênio?" aparece quando a pessoa marca "Sim"; o campo de texto aparece quando marca "Outro".
+       Ao esconder, a resposta e o erro daquela pergunta são limpos, para nada antigo ir para a mensagem. */
+    const subOperadora = campos.operadora;
+    const subOutro = document.getElementById("lead-outro-campo");
+    function atualizarConvenio() {
+        const mostrarOperadora = usaConvenio();
+        if (!mostrarOperadora) {
+            form.querySelectorAll('input[name="operadora"]').forEach(r => { r.checked = false; });
+            marcarErro("operadora", false);
+        }
+        subOperadora.hidden = !mostrarOperadora;
+        const mostrarOutro = mostrarOperadora && valorDe("operadora") === "outro";
+        if (!mostrarOutro) { campos.outro.value = ""; marcarErro("outro", false); }
+        subOutro.hidden = !mostrarOutro;
+    }
+    form.addEventListener("change", evento => {
+        const nome = evento.target.name;
+        if (nome !== "convenio" && nome !== "operadora") return;
+        const abriuOutro = nome === "operadora" && evento.target.value === "outro";
+        atualizarConvenio();
+        if (abriuOutro) campos.outro.focus({ preventScroll: false });   // já pode digitar o nome do convênio
+    });
+
     // Início do formulário: primeira alteração em qualquer campo, uma vez por abertura
     let origemBotao = "sem_posicao";
     let comecou = false;
@@ -148,6 +177,7 @@
         quemAbriu = botao;
         origemBotao = botao.dataset.waOrigin || "sem_posicao";
         comecou = false;
+        atualizarConvenio();
         mostrarPasso(false);
         modal.hidden = false;
         document.body.classList.add("lead-aberto");
@@ -201,6 +231,12 @@
             paciente: valorDe("paciente"),
             convenio: valorDe("convenio")
         };
+        // Nome do convênio: vai SÓ na mensagem do WhatsApp (conversa direta com o consultório), nunca para o rastreamento.
+        // Tira *, _ e ~ para o texto digitado não virar negrito ou riscado no WhatsApp.
+        const operadora = valorDe("operadora") === "outro"
+            ? campos.outro.value.trim().replace(/\s+/g, " ").replace(/[*_~`]/g, "")
+            : valorDe("operadora");
+        const textoConvenio = usaConvenio() ? `Sim, ${operadora}` : textoDaEscolha("convenio");
         const wa = window.nmWhats || {};
         const mensagem = [
             wa.mensagem ? wa.mensagem(origemBotao) : "Olá! Vim pelo site e quero agendar uma avaliação de ortodontia com a Dra. Nayane Moreno.",
@@ -208,7 +244,7 @@
             `*Nome:* ${respostas.nome}`,
             `*WhatsApp:* ${respostas.whatsapp}`,
             `*Quem vai usar o aparelho:* ${textoDaEscolha("paciente")}`,
-            `*Convênio:* ${textoDaEscolha("convenio")}`
+            `*Convênio:* ${textoConvenio}`
         ].join("\n");
         const origem = origemDaVisita();
         const numero = wa.numero || (document.querySelector('meta[name="whatsapp-number"]')?.content || "").replace(/\D/g, "");
@@ -233,6 +269,7 @@
         if (aba) aba.opener = null;
         else window.location.href = url; // o navegador bloqueou a nova aba: abre na mesma
         form.reset();
+        atualizarConvenio();   // esconde de novo as perguntas do convênio
         hashTelefone = telefoneDoHash = "";
         Object.keys(campos).forEach(nome => marcarErro(nome, false));
 
