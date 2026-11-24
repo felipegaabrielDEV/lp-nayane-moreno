@@ -31,7 +31,6 @@
         paciente: document.getElementById("lead-paciente"),
         convenio: document.getElementById("lead-convenio"),
         operadora: document.getElementById("lead-operadora"),   // "Qual convênio?", só com "Sim"
-        outro: document.getElementById("lead-outro"),           // nome do convênio, só com "Outro"
         nome: form.elements.nome,
         whatsapp: form.elements.whatsapp
     };
@@ -105,9 +104,8 @@
     const regras = {
         paciente: () => Boolean(valorDe("paciente")),
         convenio: () => Boolean(valorDe("convenio")),
-        // As duas perguntas do convênio só valem quando aparecem na tela
+        // "Qual convênio?" só vale quando aparece na tela (com "Sim")
         operadora: () => !usaConvenio() || Boolean(valorDe("operadora")),
-        outro: () => !usaConvenio() || valorDe("operadora") !== "outro" || campos.outro.value.trim().length >= 2,
         nome: () => campos.nome.value.trim().length >= 2,
         whatsapp: () => telefoneValido(campos.whatsapp.value)
     };
@@ -132,28 +130,18 @@
         if (alvo.tagName === "INPUT") alvo.addEventListener("blur", () => { if (alvo.value) marcarErro(nome, !regras[nome]()); });
     });
 
-    /* "Qual convênio?" aparece quando a pessoa marca "Sim"; o campo de texto aparece quando marca "Outro".
-       Ao esconder, a resposta e o erro daquela pergunta são limpos, para nada antigo ir para a mensagem. */
-    const subOperadora = campos.operadora;
-    const subOutro = document.getElementById("lead-outro-campo");
+    /* "Qual convênio?" aparece quando a pessoa marca "Sim". Ao esconder, a escolha e o erro são limpos,
+       para nada antigo ir para a mensagem. A lista são os convênios atendidos (Amil, SulAmérica, Porto Seguro e Petrobras);
+       para mudar as opções, mexa no #lead-operadora do index.html. */
     function atualizarConvenio() {
-        const mostrarOperadora = usaConvenio();
-        if (!mostrarOperadora) {
+        const mostrar = usaConvenio();
+        if (!mostrar) {
             form.querySelectorAll('input[name="operadora"]').forEach(r => { r.checked = false; });
             marcarErro("operadora", false);
         }
-        subOperadora.hidden = !mostrarOperadora;
-        const mostrarOutro = mostrarOperadora && valorDe("operadora") === "outro";
-        if (!mostrarOutro) { campos.outro.value = ""; marcarErro("outro", false); }
-        subOutro.hidden = !mostrarOutro;
+        campos.operadora.hidden = !mostrar;
     }
-    form.addEventListener("change", evento => {
-        const nome = evento.target.name;
-        if (nome !== "convenio" && nome !== "operadora") return;
-        const abriuOutro = nome === "operadora" && evento.target.value === "outro";
-        atualizarConvenio();
-        if (abriuOutro) campos.outro.focus({ preventScroll: false });   // já pode digitar o nome do convênio
-    });
+    form.addEventListener("change", evento => { if (evento.target.name === "convenio") atualizarConvenio(); });
 
     // Início do formulário: primeira alteração em qualquer campo, uma vez por abertura
     let origemBotao = "sem_posicao";
@@ -231,12 +219,8 @@
             paciente: valorDe("paciente"),
             convenio: valorDe("convenio")
         };
-        // Nome do convênio: vai SÓ na mensagem do WhatsApp (conversa direta com o consultório), nunca para o rastreamento.
-        // Tira *, _ e ~ para o texto digitado não virar negrito ou riscado no WhatsApp.
-        const operadora = valorDe("operadora") === "outro"
-            ? campos.outro.value.trim().replace(/\s+/g, " ").replace(/[*_~`]/g, "")
-            : valorDe("operadora");
-        const textoConvenio = usaConvenio() ? `Sim, ${operadora}` : textoDaEscolha("convenio");
+        // Qual convênio: vai SÓ na mensagem do WhatsApp (conversa direta com o consultório), nunca para o rastreamento.
+        const textoConvenio = usaConvenio() ? `Sim, ${valorDe("operadora")}` : textoDaEscolha("convenio");
         const wa = window.nmWhats || {};
         const mensagem = [
             wa.mensagem ? wa.mensagem(origemBotao) : "Olá! Vim pelo site e quero agendar uma avaliação de ortodontia com a Dra. Nayane Moreno.",
