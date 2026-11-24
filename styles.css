@@ -1465,6 +1465,12 @@ body.lead-aberto { overflow: hidden; }
 
 .lead-campo.invalido .lead-escolha span, .lead-campo input.invalido { border-color: #B3261E; }
 .lead-campo input.invalido { box-shadow: 0 0 0 3px #B3261E1F; }
+/* Perguntas que só aparecem depois de uma resposta (qual convênio): entram com um fio verde do lado, ligadas à pergunta de cima.
+   O [hidden] precisa de regra própria porque .lead-campo usa display:grid, que passaria por cima do atributo. */
+.lead-subcampo { padding-left: 14px; border-left: 3px solid var(--menta-2); animation: lead-entra .25s var(--ease); }
+.lead-subcampo[hidden] { display: none; }
+@keyframes lead-entra { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .lead-subcampo { animation: none; } }
 .lead-erro { margin: 0; font-size: .82rem; font-weight: 600; color: #B3261E; }
 
 .lead-enviar { width: 100%; margin-top: 4px; white-space: normal; }
