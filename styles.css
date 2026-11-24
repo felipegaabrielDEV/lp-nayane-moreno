@@ -1408,3 +1408,151 @@ html.faq-mexendo .duvidas-brilho path, html.faq-mexendo .flutuante::before { ani
     .faixa li:hover { --sobe: 0px; --zoom: 1; }
     .faixa-fio .fio-luz { opacity: 0; }
 }
+
+/* ==========================================================================
+   Formulário antes do WhatsApp, aviso de cookies e avaliações com permissão (entraram na prévia 2, aprovada)
+   Mesmos tokens do resto do site. Animações só com transform e opacity, desligadas em prefers-reduced-motion.
+   ========================================================================== */
+
+/* Link com cara de texto (rodapé e quadro das avaliações): é <button> porque abre o aviso, não navega */
+.link-cookies { padding: 0; border: 0; background: none; color: inherit; font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.rodape-legal a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Avaliações: quadro de reserva enquanto não há permissão para o widget */
+.avaliacoes-reserva { display: grid; justify-items: center; gap: 18px; padding: 44px 16px; text-align: center; }
+.avaliacoes-reserva p { margin: 0; max-width: 46ch; color: var(--texto); font-size: .95rem; line-height: 1.6; }
+.avaliacoes-reserva .link-cookies { color: var(--botao); font-weight: 600; }
+
+/* ---------- Formulário antes do WhatsApp (lead-form.js) ---------- */
+body.lead-aberto { overflow: hidden; }
+.lead-modal { position: fixed; inset: 0; z-index: 1100; display: grid; place-items: center; padding: 16px; }
+.lead-modal[hidden] { display: none; }
+.lead-fundo { position: absolute; inset: 0; background: rgba(15, 63, 54, .55); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); opacity: 0; transition: opacity .3s var(--ease); }
+.lead-janela { position: relative; width: 100%; max-width: 480px; max-height: calc(100svh - 32px); overflow-y: auto; overscroll-behavior: contain; padding: 32px 26px 24px; border-radius: 24px; border-top: 4px solid var(--marca); background: #fff; color: var(--texto); box-shadow: 0 40px 80px -30px rgba(15, 63, 54, .55); opacity: 0; transform: translateY(18px) scale(.98); transition: opacity .3s var(--ease), transform .35s var(--ease); }
+.lead-modal.aberto .lead-fundo, .lead-modal.aberto .lead-janela { opacity: 1; }
+.lead-modal.aberto .lead-janela { transform: none; }
+
+.lead-fechar { position: absolute; top: 14px; right: 14px; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--borda); border-radius: 50%; background: #fff; color: var(--verde); cursor: pointer; transition: background .2s, color .2s; }
+.lead-fechar svg { width: 20px; height: 20px; }
+@media (hover: hover) { .lead-fechar:hover { background: var(--verde); color: #fff; } }
+
+.lead-janela .rotulo { margin-bottom: 10px; padding-right: 48px; }
+.lead-janela h2 { margin: 0; padding-right: 40px; font-size: clamp(1.45rem, 5.6vw, 1.75rem); line-height: 1.2; color: var(--tinta); }
+.lead-janela h2 em { font-style: normal; color: var(--botao); }
+.lead-intro { margin: 10px 0 0; font-size: .95rem; line-height: 1.55; color: var(--texto); }
+
+.lead-form { display: grid; gap: 18px; margin-top: 22px; }
+.lead-campo { display: grid; gap: 8px; min-width: 0; margin: 0; padding: 0; border: 0; }
+.lead-campo > label, .lead-campo legend { padding: 0; font-size: .9rem; font-weight: 700; color: var(--verde); }
+.lead-campo legend { margin-bottom: 8px; }
+.lead-campo input[type="text"], .lead-campo input[type="tel"] {
+    width: 100%; min-height: 50px; padding: 12px 16px; border: 1px solid #303B3947; border-radius: var(--raio-p);
+    background: #fff; color: var(--tinta); font: inherit;
+    font-size: 1rem; /* 16px: evita o zoom automático do iPhone ao tocar no campo */
+    transition: border-color .2s, box-shadow .2s;
+}
+.lead-campo input::placeholder { color: #7B8583; }
+.lead-campo input[type="text"]:focus, .lead-campo input[type="tel"]:focus { outline: none; border-color: var(--botao); box-shadow: 0 0 0 4px #0F7A6433; }
+
+/* Opções de toque (radio): pílulas grandes, uma toque escolhe */
+.lead-escolhas { display: flex; flex-wrap: wrap; gap: 8px; }
+.lead-escolha { position: relative; display: inline-flex; cursor: pointer; }
+.lead-escolha input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.lead-escolha span { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 16px; border: 1px solid #303B3947; border-radius: 999px; background: #fff; color: var(--tinta); font-size: .92rem; font-weight: 600; line-height: 1.25; transition: background .2s, border-color .2s, color .2s; }
+.lead-escolha input:checked + span { border-color: var(--botao); background: var(--botao); color: #fff; }
+.lead-escolha input:focus-visible + span { outline: 3px solid var(--botao); outline-offset: 3px; }
+@media (hover: hover) { .lead-escolha:hover span { border-color: var(--botao); } }
+
+.lead-campo.invalido .lead-escolha span, .lead-campo input.invalido { border-color: #B3261E; }
+.lead-campo input.invalido { box-shadow: 0 0 0 3px #B3261E1F; }
+.lead-erro { margin: 0; font-size: .82rem; font-weight: 600; color: #B3261E; }
+
+.lead-enviar { width: 100%; margin-top: 4px; white-space: normal; }
+.lead-nota { margin: 0; text-align: center; font-size: .8rem; line-height: 1.5; color: var(--texto); }
+.lead-nota a { color: var(--botao); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+/* Confirmação depois do envio */
+.lead-sucesso { display: grid; justify-items: center; gap: 14px; padding: 8px 4px 2px; text-align: center; }
+.lead-sucesso[hidden] { display: none; }
+.lead-sucesso-icone { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: var(--menta); color: var(--botao); }
+.lead-sucesso-icone svg { width: 30px; height: 30px; }
+.lead-sucesso h2 { padding-right: 0; }
+.lead-sucesso h2:focus { outline: none; }
+.lead-sucesso .lead-intro { margin: 0; }
+.lead-sucesso .lead-intro strong { color: var(--verde); }
+.lead-voltar { min-height: 44px; padding: 8px 12px; border: 0; background: none; color: var(--verde); font: inherit; font-size: .9rem; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+
+/* No celular, a janela sobe de baixo, como uma gaveta */
+@media (max-width: 480px) {
+    .lead-modal { align-items: end; padding: 0; }
+    .lead-janela { max-width: none; max-height: 94svh; padding: 28px 20px calc(22px + env(safe-area-inset-bottom)); border-radius: 24px 24px 0 0; transform: translateY(40px); }
+}
+
+/* ---------- Aviso de cookies (consent.js) ---------- */
+.cookie-aviso { position: fixed; left: 16px; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 1000; max-width: 560px; padding: 22px 22px 20px; border-radius: 22px; border-top: 4px solid var(--marca); background: #fff; color: var(--texto); box-shadow: 0 30px 70px -24px rgba(15, 63, 54, .5), 0 0 0 1px var(--borda); opacity: 0; transform: translateY(20px); transition: opacity .35s var(--ease), transform .4s var(--ease); }
+.cookie-aviso[hidden] { display: none; }
+.cookie-aviso.visivel { opacity: 1; transform: none; }
+.cookie-titulo { margin: 0; font-size: 1.1rem; font-weight: 700; color: var(--tinta); }
+.cookie-texto { margin: 6px 0 0; font-size: .88rem; line-height: 1.55; }
+.cookie-texto a { color: var(--botao); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.cookie-opcoes { display: grid; gap: 10px; margin-top: 14px; }
+.cookie-opcoes[hidden] { display: none; }
+.cookie-opcao { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; border: 1px solid var(--borda); border-radius: var(--raio-p); background: var(--fundo); cursor: pointer; }
+.cookie-opcao input { flex: none; width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--botao); cursor: pointer; }
+.cookie-opcao span { font-size: .84rem; line-height: 1.45; }
+.cookie-opcao strong { display: block; font-size: .9rem; color: var(--verde); }
+.cookie-acoes { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; margin-top: 16px; }
+.cookie-botao { min-height: 44px; padding: 10px 20px; border: 1px solid var(--botao); border-radius: 999px; background: #fff; color: var(--botao); font: 700 .9rem var(--fonte-texto); cursor: pointer; transition: background .2s, color .2s; }
+.cookie-botao[hidden] { display: none; }
+.cookie-botao-link { border-color: transparent; background: transparent; text-decoration: underline; text-underline-offset: 3px; }
+.cookie-botao-principal { background: var(--botao); color: #fff; }
+@media (hover: hover) {
+    .cookie-botao:hover { background: var(--menta); }
+    .cookie-botao-link:hover { background: transparent; color: var(--verde); }
+    .cookie-botao-principal:hover { background: var(--botao-2); }
+}
+/* Enquanto o aviso está aberto no celular, o botão flutuante do WhatsApp sai do caminho */
+@media (max-width: 600px) { body.cookie-aberto .flutuante { opacity: 0; pointer-events: none; transform: scale(.6); } }
+@media (max-width: 480px) {
+    .cookie-aviso { left: 10px; right: 10px; bottom: calc(10px + env(safe-area-inset-bottom)); padding: 18px 16px 16px; }
+    .cookie-acoes { justify-content: stretch; }
+    .cookie-acoes .cookie-botao:not(.cookie-botao-link) { flex: 1 1 0; }
+    .cookie-acoes .cookie-botao-link { order: 3; flex-basis: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lead-fundo, .lead-janela, .cookie-aviso { transition: none; transform: none; }
+}
+
+/* ---------- Páginas de apoio: política de privacidade e 404 ---------- */
+.legal-corpo { display: flex; flex-direction: column; min-height: 100svh; background: var(--fundo); }
+.legal-topo { border-bottom: 1px solid var(--borda); background: #fff; }
+.legal-topo-grade { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 76px; }
+.legal-logo { display: block; width: auto; height: 46px; }
+.legal-voltar { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--botao); font-size: .9rem; font-weight: 700; }
+.legal-voltar svg { width: 18px; height: 18px; }
+.legal-artigo { flex: 1; width: min(100% - 2 * var(--gutter), 780px); padding-top: 44px; padding-bottom: 64px; } /* mesma margem lateral do .container, mais estreito para leitura */
+.legal-artigo h1 { margin: 0; font-size: clamp(1.9rem, 6vw, 2.6rem); line-height: 1.15; color: var(--tinta); }
+.legal-artigo h2 { margin: 38px 0 12px; font-size: 1.15rem; line-height: 1.35; color: var(--verde); }
+.legal-artigo p, .legal-artigo li { color: var(--texto); font-size: .98rem; line-height: 1.7; }
+.legal-artigo ul { padding-left: 22px; }
+.legal-artigo li + li { margin-top: 6px; }
+.legal-artigo a, .legal-artigo .link-cookies { color: var(--botao); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.legal-data { margin: 10px 0 0; font-size: .85rem !important; }
+.legal-abertura { margin-top: 22px; font-size: 1.05rem !important; color: var(--tinta) !important; }
+.legal-tabela-rolagem { margin: 16px 0; overflow-x: auto; border: 1px solid var(--borda); border-radius: var(--raio-p); background: #fff; }
+.legal-tabela { width: 100%; min-width: 520px; border-collapse: collapse; font-size: .9rem; }
+.legal-tabela th, .legal-tabela td { padding: 12px 14px; border-bottom: 1px solid var(--borda); text-align: left; vertical-align: top; line-height: 1.55; color: var(--texto); }
+.legal-tabela th { background: var(--menta); color: var(--verde); font-weight: 700; }
+.legal-tabela tr:last-child td { border-bottom: 0; }
+.legal-rodape { padding: 22px 0 calc(22px + env(safe-area-inset-bottom)); border-top: 1px solid var(--borda); background: #fff; text-align: center; }
+.legal-rodape p { margin: 4px 0; color: var(--texto); font-size: .85rem; }
+.legal-rodape a { color: var(--botao); font-weight: 600; }
+
+/* 404 */
+.nf { flex: 1; display: grid; align-content: center; justify-items: center; gap: 4px; padding-top: 48px; padding-bottom: 64px; text-align: center; }
+.nf-codigo { margin: 0; font-size: clamp(4.5rem, 22vw, 7.5rem); font-weight: 700; line-height: 1; color: var(--menta-2); letter-spacing: -.04em; }
+.nf h1 { margin: 0; font-size: clamp(1.8rem, 6vw, 2.4rem); line-height: 1.2; color: var(--tinta); }
+.nf h1 em { font-style: normal; font-weight: 400; color: var(--botao); }
+.nf-texto { max-width: 48ch; margin: 14px 0 0; color: var(--texto); line-height: 1.65; }
+.nf-acoes { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 26px; }

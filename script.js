@@ -1,9 +1,9 @@
 /* ==========================================================================
    Dra. Nayane Moreno — interações da página
-   Menu, links do WhatsApp, FAQ, galeria do consultório, revelar ao rolar e o
-   botão da prévia que esconde os marcadores de pendência.
-   Formulário antes do WhatsApp, origem por UTM (Tintim), eventos e cookies
-   entram na prévia 2.
+   Menu, links do WhatsApp, FAQ, galeria do consultório, revelar ao rolar e as
+   avaliações do Google (só com a permissão do aviso de cookies).
+   O formulário antes do WhatsApp fica em lead-form.js, os eventos em eventos.js
+   e o aviso de cookies em consent.js.
    ========================================================================== */
 (function () {
     "use strict";
@@ -29,11 +29,14 @@
         const texto = encodeURIComponent(mensagens[origem] || base);
         return numero ? `https://wa.me/${numero}?text=${texto}` : `https://wa.me/?text=${texto}`;
     };
+    /* O href é a reserva para quem navega sem JavaScript (vai direto ao WhatsApp). Com JavaScript, o clique abre
+       o formulário (lead-form.js), que usa a mensagem do botão + as respostas. */
     document.querySelectorAll("[data-wa]").forEach(el => {
         el.href = linkWhats(el.dataset.waOrigin);
         el.target = "_blank";
         el.rel = "noopener";
     });
+    window.nmWhats = { numero, mensagem: origem => mensagens[origem] || base };
 
     /* ---------- Menu ---------- */
     const topo = document.getElementById("topo");
@@ -339,11 +342,17 @@
         preparar();
     }
 
-    /* Avaliações do Google (Elfsight): o script de terceiro só é baixado quando a seção chega perto da tela (400 px antes),
-       para não pesar a abertura do site. Quando o aviso de cookies existir (prévia 2), carregar só após o aceite. */
+    /* Avaliações do Google (Elfsight)
+       O widget é conteúdo de terceiro e só carrega com a permissão "Avaliações do Google" do aviso de cookies
+       (consent.js, chave "e"). Com a permissão, o script é baixado quando a seção chega perto da tela (400 px antes),
+       para não pesar a abertura do site. Sem a permissão, fica o quadro de reserva com o link para o Google.
+       Se a pessoa permitir depois, pelo aviso, o widget carrega na hora (evento "nm:consent"). */
     const molduraAval = document.querySelector("[data-avaliacoes-widget]");
     if (molduraAval) {
+        let pedido = false;
         const carregarAvaliacoes = () => {
+            if (pedido) return;
+            pedido = true;
             const loader = document.createElement("script");
             loader.src = "https://elfsightcdn.com/platform.js";
             loader.async = true;
@@ -351,12 +360,17 @@
             const widget = document.createElement("div");
             widget.className = "elfsight-app-34214394-b603-4c9b-b271-f203c15749db";
             widget.setAttribute("data-elfsight-app-lazy", "");
+            molduraAval.querySelector("[data-avaliacoes-reserva]")?.remove();
             molduraAval.appendChild(widget);
         };
-        if ("IntersectionObserver" in window) {
+        const quandoPerto = () => {
+            if (!("IntersectionObserver" in window)) return carregarAvaliacoes();
             const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { obs.disconnect(); carregarAvaliacoes(); } }, { rootMargin: "400px 0px" });
             obs.observe(molduraAval);
-        } else { carregarAvaliacoes(); }
+        };
+        const permitido = () => { const c = window.nmConsent?.ler(); return !!(c && c.v === 1 && c.e); };
+        if (permitido()) quandoPerto();
+        document.addEventListener("nm:consent", ev => { if (ev.detail?.e) quandoPerto(); });
     }
 
     const ano = document.querySelector("[data-ano]");
