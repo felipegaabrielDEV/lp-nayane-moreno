@@ -87,7 +87,7 @@ HTML, CSS e JavaScript puros, sem framework nem build, publicados pelo GitHub Pa
 ├── lead-form.js        # Formulário antes do WhatsApp e origem da visita (UTM)
 ├── eventos.js          # Eventos para o Google Tag Manager (window.nayaneTrack)
 ├── consent.js          # Aviso de cookies (LGPD) e Modo de Consentimento do Google
-├── politica-de-privacidade.html  # noindex; tem um PENDENTE (quem responde pelos dados)
+├── politica-de-privacidade.html  # noindex; responsável pelos dados: a empresa do consultório (CNPJ)
 ├── 404.html            # Página de erro, com <base href="/">
 ├── docs/               # gtm-passo-a-passo.md: como montar o painel do GTM (para o gestor de tráfego)
 ├── ferramentas/        # gerar-previa-privada.py (HTML único offline) e gerar-cartao.js (imagem de compartilhamento)
@@ -139,7 +139,7 @@ Depois acesse `http://localhost:8000`.
 - **Ajustes finais:** botão de prévia retirado do site; bloco de Avaliações preparado; botões "Como chegar" apontam para o perfil do Google Maps; espaçamento do bloco de convênios.
 - **Avaliações do Google (21/11/2026):** widget do Elfsight (plano grátis, conta própria da Nayane) nas cores do site, liberado pela Dra.; carrega sozinho ao chegar perto da seção.
 - **Convênio no formulário (24/11/2026):** a Dra. pediu que, ao marcar "Sim" em convênio, o formulário pergunte qual (a recepção já sabe de qual plano se trata). Feito, só com os quatro convênios atendidos (a opção "Outro" foi retirada por decisão da agência).
-- **Site aprovado (24/11/2026):** o Felipe aprovou o site pronto, no grupo. A Dra. Nayane foi avisada do que foi feito (formulário, aviso de cookies, política de privacidade e medição) e de que ainda falta a resposta dela sobre quem responde pelos dados. O lançamento (Google) fica para depois.
+- **Site aprovado (24/11/2026):** o Felipe aprovou o site pronto, no grupo. A Dra. Nayane foi avisada do que foi feito (formulário, aviso de cookies, política de privacidade e medição) e de que faltava dizer quem responde pelos dados (a agência informou a empresa do consultório, com CNPJ). O lançamento (Google) fica para depois.
 - **Imagem de compartilhamento (21/11/2026):** cartão 1200 × 630 com a foto da Dra., a logo e as cores do site. A Dra. escolheu esta entre duas opções; a versão com a logomarca fica guardada em `assets/compartilhar/` e `ferramentas/`.
 - **Prévia 2 (aprovada pelo Felipe e publicada no endereço oficial):** formulário antes do WhatsApp, aviso de cookies com Modo de Consentimento, Google Tag Manager, eventos, avaliações do Google só com permissão, política de privacidade e página 404, em `/previa-2/` para aprovação.
 - **Domínio:** `dranayanemorenoortodontia.com.br` no ar com HTTPS.
@@ -217,7 +217,8 @@ Conferência feita em 13/11/2026 contra os quatro documentos da cliente no Drive
 - [ ] **"Ortopedia Facial" na logo do rodapé:** a logo completa (`assets/marca/logo-completa.png`) traz "Ortodontia & Ortopedia Facial". Confirmar o registro no CRO-SE; se não houver, o rodapé usa só o ícone
 - [ ] **Foto do diploma e dos certificados** (a Dra. perguntou o que é preciso e ainda não enviou)
 - [ ] **Autorização escrita das operadoras** para as logos dos convênios, se a Dra. tiver
-- [ ] **Política de privacidade:** nome de quem responde pelos dados (a Dra. como pessoa física ou a empresa do consultório, com CNPJ). Está como `PENDENTE` na política de privacidade, já no ar
+- [x] **Política de privacidade, quem responde pelos dados:** a empresa do consultório, CNPJ 28.971.129/0001-66 (informado pela agência em 24/11/2026). A política identifica a empresa pelo CNPJ e pelo consultório
+- [ ] **Política de privacidade, razão social:** a política ainda não traz o nome (razão social) da empresa, só o CNPJ. Acrescentar se a Dra. quiser
 - [ ] **Resultado sem promessa:** a Dra. quer destacar o resultado do tratamento; combinar como mostrar a evolução sem prometer resultado (regra de publicidade odontológica)
 
 *Com o gestor de tráfego*
