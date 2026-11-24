@@ -3,7 +3,7 @@
 **Para:** o gestor de tráfego (Felipe).
 **Versão:** 1.0 · 23/11/2026.
 **Base:** o guia "Guia de integrações e rastreamento" (23/11/2026), ajustado ao que o site **realmente envia**.
-**Onde testar:** prévia em `https://dranayanemorenoortodontia.com.br/previa-2/` (mesmo domínio do site oficial, fora do Google).
+**Onde testar:** no site oficial, `https://dranayanemorenoortodontia.com.br/` (a prévia 2 foi aprovada e publicada; o site segue fora do Google até o lançamento).
 **Regra geral:** nenhuma senha ou token no GTM nem no site. Onde aparece `[ENTRE_COLCHETES]`, é informação que ainda falta.
 
 ---
@@ -205,7 +205,7 @@ Se for usar **Tintim**, envie os links por origem: o site já tem o lugar para e
 
 ## 10. Testes no modo "Visualizar" (antes de publicar o contêiner)
 
-Abra o modo Visualizar do GTM com o endereço da prévia: `https://dranayanemorenoortodontia.com.br/previa-2/`
+Abra o modo Visualizar do GTM com o endereço do site: `https://dranayanemorenoortodontia.com.br/`
 
 1. **Antes de escolher no aviso:** nenhuma tag de GA4, Meta ou Clarity dispara. No Tag Assistant, o consentimento aparece todo como `denied`.
 2. **"Recusar":** continua tudo bloqueado.

@@ -4,6 +4,41 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
+    <!-- Consentimento (LGPD): tudo começa NEGADO e só muda quando a pessoa escolhe no aviso de cookies.
+         Precisa vir ANTES do Google Tag Manager. Se a pessoa já escolheu numa visita anterior, a escolha salva
+         (localStorage "nm_consent") é reaplicada aqui, antes de qualquer tag rodar. O aviso fica no consent.js. -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag("consent", "default", {
+            ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied",
+            analytics_storage: "denied", wait_for_update: 500
+        });
+        gtag("set", "ads_data_redaction", true);
+        (function () {
+            try {
+                var c = JSON.parse(localStorage.getItem("nm_consent") || "null");
+                if (c && c.v === 1) {
+                    gtag("consent", "update", {
+                        analytics_storage: c.a ? "granted" : "denied",
+                        ad_storage: c.m ? "granted" : "denied",
+                        ad_user_data: c.m ? "granted" : "denied",
+                        ad_personalization: c.m ? "granted" : "denied"
+                    });
+                    dataLayer.push({ event: "consent_update", consent_analytics: !!c.a, consent_marketing: !!c.m, consent_externo: !!c.e });
+                }
+            } catch (e) { }
+        })();
+    </script>
+    <!-- Google Tag Manager (contêiner do gestor de tráfego). GA4, Meta Pixel e Microsoft Clarity são configurados
+         no painel do GTM, nunca direto no código, para não duplicar. Passo a passo em docs/gtm-passo-a-passo.md. -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != "dataLayer" ? "&l=" + l : ""; j.async = true; j.src =
+                    "https://www.googletagmanager.com/gtm.js?id=" + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, "script", "dataLayer", "GTM-PN2GHRMF");</script>
+    <!-- Fim do Google Tag Manager -->
+
     <!-- PRÉVIA: enquanto não houver aprovação final, a página fica fora dos buscadores. -->
     <meta name="robots" content="noindex, nofollow">
 
@@ -51,9 +86,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="preload" as="image" href="assets/profissional/dra-nayane-topo-900.webp" imagesrcset="assets/profissional/dra-nayane-topo-560.webp 560w, assets/profissional/dra-nayane-topo-900.webp 900w" imagesizes="(min-width: 1024px) 460px, 86vw">
-    <link rel="stylesheet" href="styles.css?v=20261118-2">
+    <link rel="stylesheet" href="styles.css?v=20261123-01">
 </head>
 <body>
+<!-- Google Tag Manager (noscript): reserva para quem navega sem JavaScript -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PN2GHRMF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
 
 <!-- Ícones usados no site (um único sprite, sem bibliotecas externas). -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -79,6 +117,7 @@
     <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5-11-6.5Z"/></symbol>
     <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
     <symbol id="i-chevron" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m9 6 6 6-6 6"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
     <!-- Ícones das situações: desenhos simples de dentes, só ilustração. -->
 </svg>
 
@@ -665,8 +704,9 @@
 
     <!-- =========================== AVALIAÇÕES (condicionado) =========================== -->
     <!-- AVALIAÇÕES DO GOOGLE (widget Elfsight), liberado pela Dra. Nayane. Cores e idioma configurados no painel do Elfsight.
-         O script.js baixa o widget só quando a seção chega perto da tela (bloco "Avaliações do Google"), para não pesar a abertura do site.
-         Pendências: aviso de cookies (prévia 2: carregar o widget só após o aceite), política de privacidade citando Google/Elfsight e norma do CFO conferida.
+         O widget é conteúdo de terceiro (Google e Elfsight) e só carrega com a permissão "Avaliações do Google" do aviso de cookies.
+         Quem aceita vê as avaliações direto, sem clique extra; quem recusa vê o quadro de reserva abaixo, com o link do perfil no Google.
+         O carregamento fica em script.js (bloco "Avaliações do Google"). Pendente: norma do CFO conferida.
          ID do widget (conta Elfsight só da Nayane; não reutilizar o ID de outros clientes): 34214394-b603-4c9b-b271-f203c15749db -->
     <section class="secao-curta" id="avaliacoes" aria-labelledby="avaliacoes-titulo">
         <div class="container">
@@ -675,7 +715,13 @@
                     <span class="rotulo">Avaliações</span>
                     <h2 id="avaliacoes-titulo">O que os pacientes dizem no Google</h2>
                 </div>
-                <div class="avaliacoes-moldura" data-avaliacoes-widget></div>
+                <div class="avaliacoes-moldura" data-avaliacoes-widget>
+                    <!-- Reserva: some assim que o widget carrega -->
+                    <div class="avaliacoes-reserva" data-avaliacoes-reserva>
+                        <p>As avaliações aparecem aqui quando você permite o conteúdo do Google nas <button type="button" class="link-cookies" data-consent-open>preferências de cookies</button>. Você também pode lê-las direto no Google.</p>
+                        <a class="botao botao-contorno" href="https://www.google.com/maps/place/Dra.+Nayane+Moreno+Dentista+-+Consult%C3%B3rio+Odontol%C3%B3gico+em+Aracaju/@-10.919549,-37.0539782,17z/data=!3m1!4b1!4m6!3m5!1s0x71ab3a88184b0cb:0xc2eadc6f48c56f93!8m2!3d-10.9195543!4d-37.0513979!16s%2Fg%2F11lfg9tw98" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-pin"/></svg>Ver as avaliações no Google</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -772,15 +818,107 @@
         <div class="container">
             <p><strong>Dra. Nayane Moreno</strong> · Cirurgiã-Dentista · CRO-SE 2301</p>
             <p>As informações deste site têm caráter informativo e não substituem a avaliação clínica. A indicação de tratamento depende da avaliação de cada caso.</p>
-            <p>© <span data-ano>2026</span> Dra. Nayane Moreno. Política de privacidade e aviso de cookies entram na prévia 2.</p>
+            <p>© <span data-ano>2026</span> Dra. Nayane Moreno · <a href="politica-de-privacidade.html">Política de privacidade</a> · <button type="button" class="link-cookies" data-consent-open>Preferências de cookies</button></p>
         </div>
     </div>
 </footer>
 
 <a class="flutuante" href="#" data-wa data-wa-origin="botao_flutuante" aria-label="Agendar avaliação pelo WhatsApp"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg></a>
 
-<!-- Só na prévia: mostra ou esconde os marcadores de pendência para apresentar à cliente. -->
+<!-- FORMULÁRIO ANTES DO WHATSAPP (lead-form.js)
+     Todo botão com data-wa abre esta janela. As perguntas vêm do Roteiro do site.
+     Depois do envio, o WhatsApp abre com a mensagem do botão + as respostas, e a janela mostra a confirmação.
+     data-clarity-mask: o Microsoft Clarity não grava nada do que é digitado aqui. -->
+<div class="lead-modal" id="lead-modal" data-clarity-mask="true" hidden>
+    <div class="lead-fundo" data-lead-fechar></div>
+    <div class="lead-janela" role="dialog" aria-modal="true" aria-labelledby="lead-titulo" aria-describedby="lead-intro">
+        <button class="lead-fechar" type="button" data-lead-fechar aria-label="Fechar formulário"><svg aria-hidden="true"><use href="#i-x"/></svg></button>
 
-<script src="script.js?v=20261112-12" defer></script>
+        <div class="lead-passo" id="lead-passo">
+            <span class="rotulo">Dra. Nayane Moreno</span>
+            <h2 id="lead-titulo">Agende sua avaliação pelo <em>WhatsApp</em></h2>
+            <p class="lead-intro" id="lead-intro">Quatro respostas rápidas e a conversa abre no WhatsApp com a mensagem pronta.</p>
+
+            <form class="lead-form" id="lead-form" novalidate>
+                <fieldset class="lead-campo" id="lead-paciente">
+                    <legend>Quem vai usar o aparelho?</legend>
+                    <div class="lead-escolhas">
+                        <label class="lead-escolha"><input type="radio" name="paciente" value="adulto"><span>Eu (adulto)</span></label>
+                        <label class="lead-escolha"><input type="radio" name="paciente" value="adolescente"><span>Meu filho ou filha (adolescente)</span></label>
+                    </div>
+                    <p class="lead-erro" id="lead-paciente-erro" hidden>Escolha uma opção.</p>
+                </fieldset>
+
+                <fieldset class="lead-campo" id="lead-convenio">
+                    <legend>Vai usar convênio?</legend>
+                    <div class="lead-escolhas">
+                        <label class="lead-escolha"><input type="radio" name="convenio" value="sim"><span>Sim</span></label>
+                        <label class="lead-escolha"><input type="radio" name="convenio" value="particular"><span>Não, particular</span></label>
+                        <label class="lead-escolha"><input type="radio" name="convenio" value="nao_sei"><span>Ainda não sei</span></label>
+                    </div>
+                    <p class="lead-erro" id="lead-convenio-erro" hidden>Escolha uma opção.</p>
+                </fieldset>
+
+                <div class="lead-campo">
+                    <label for="lead-nome">Como podemos te chamar?</label>
+                    <input id="lead-nome" name="nome" type="text" placeholder="Seu nome" autocomplete="given-name" required>
+                    <p class="lead-erro" id="lead-nome-erro" hidden>Escreva seu nome.</p>
+                </div>
+
+                <div class="lead-campo">
+                    <label for="lead-whatsapp">Seu WhatsApp com DDD</label>
+                    <input id="lead-whatsapp" name="whatsapp" type="tel" inputmode="numeric" placeholder="(79) 99999-9999" autocomplete="tel-national" maxlength="15" required>
+                    <p class="lead-erro" id="lead-whatsapp-erro" hidden>Confira o número, com DDD.</p>
+                </div>
+
+                <button class="botao botao-destaque lead-enviar" type="submit"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg>Continuar no WhatsApp</button>
+                <p class="lead-nota">Você confirma o envio da mensagem no WhatsApp. Suas respostas vão só para a conversa com o consultório. <a href="politica-de-privacidade.html">Política de privacidade</a></p>
+            </form>
+        </div>
+
+        <!-- Confirmação: entra no lugar do formulário depois do envio -->
+        <div class="lead-sucesso" id="lead-sucesso" hidden>
+            <span class="lead-sucesso-icone" aria-hidden="true"><svg><use href="#i-check"/></svg></span>
+            <h2 id="lead-sucesso-titulo" tabindex="-1">Tudo certo<span id="lead-sucesso-nome"></span>!</h2>
+            <p class="lead-intro">Abrimos o WhatsApp do consultório com a sua mensagem pronta. <strong>É só tocar em enviar por lá.</strong> Se ele não abriu, use o botão abaixo.</p>
+            <a class="botao botao-destaque lead-enviar" id="lead-sucesso-link" href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-whatsapp"/></svg>Abrir o WhatsApp de novo</a>
+            <button class="lead-voltar" type="button" data-lead-fechar>Voltar ao site</button>
+        </div>
+    </div>
+</div>
+
+<!-- Aviso de cookies (consent.js): aparece até a pessoa escolher e reabre por "Preferências de cookies".
+     Nenhuma ferramenta de medição, anúncio ou conteúdo externo roda antes da escolha. -->
+<div class="cookie-aviso" id="aviso-cookies" role="dialog" aria-modal="false" aria-labelledby="cookie-titulo" aria-describedby="cookie-texto" hidden>
+    <p class="cookie-titulo" id="cookie-titulo">Sua privacidade</p>
+    <p class="cookie-texto" id="cookie-texto">Usamos cookies para medir as visitas ao site, medir os anúncios da Dra. Nayane e mostrar as avaliações do Google. Você escolhe o que aceita. <a href="politica-de-privacidade.html">Saiba mais</a>.</p>
+    <div class="cookie-opcoes" hidden>
+        <label class="cookie-opcao">
+            <input type="checkbox" id="cookie-estatistica">
+            <span><strong>Estatística</strong>Google Analytics e Microsoft Clarity, para entender como o site é usado.</span>
+        </label>
+        <label class="cookie-opcao">
+            <input type="checkbox" id="cookie-marketing">
+            <span><strong>Marketing</strong>Google e Meta (Facebook e Instagram), para medir os anúncios e mostrá-los a quem já visitou o site.</span>
+        </label>
+        <label class="cookie-opcao">
+            <input type="checkbox" id="cookie-externo">
+            <span><strong>Avaliações do Google</strong>Quadro do Elfsight que mostra as avaliações do perfil da Dra. no Google.</span>
+        </label>
+    </div>
+    <div class="cookie-acoes">
+        <button class="cookie-botao" type="button" data-consent="recusar">Recusar</button>
+        <button class="cookie-botao cookie-botao-link" type="button" data-consent="personalizar">Personalizar</button>
+        <button class="cookie-botao cookie-botao-link" type="button" data-consent="salvar" hidden>Salvar escolha</button>
+        <button class="cookie-botao cookie-botao-principal" type="button" data-consent="aceitar">Aceitar</button>
+    </div>
+</div>
+
+<!-- Ordem importa: eventos.js cria window.nayaneTrack; consent.js cria window.nmConsent (lido pelas avaliações
+     em script.js); script.js monta os links do WhatsApp; lead-form.js abre o formulário nos botões do WhatsApp. -->
+<script src="eventos.js?v=20261123-01" defer></script>
+<script src="consent.js?v=20261123-01" defer></script>
+<script src="script.js?v=20261123-01" defer></script>
+<script src="lead-form.js?v=20261123-01" defer></script>
 </body>
 </html>
