@@ -138,6 +138,7 @@ Depois acesse `http://localhost:8000`.
 - **Prévia 2 (23/11/2026):** formulário antes do WhatsApp, aviso de cookies com Modo de Consentimento, Google Tag Manager, eventos, avaliações do Google só com permissão, política de privacidade e página 404, em `/previa-2/` para aprovação.
 - **Domínio:** `dranayanemorenoortodontia.com.br` no ar com HTTPS.
 - **Documentação:** pasta da cliente no Drive reorganizada, com os questionários respondidos pela Dra., os estudos da agência e um mapa do projeto, "Leia primeiro" (ver "Documentação no Drive").
+- **Inteligências no Drive (24/11/2026):** pasta "INTELIGÊNCIAS - META" na pasta da Nayane e modelo "INTELIGÊNCIAS - CLIENTES" para as próximas clientes (ver "Documentação no Drive").
 
 ---
 
@@ -152,6 +153,8 @@ O material estratégico fica no **Google Drive**, na pasta da Dra. Nayane, e **n
 | **Construção do Site › Estudos** | Roteiro do site, notas internas da agência, pesquisa de mercado e manual de identidade visual |
 | **Construção do Site › Confirmações** | Conferências com o desenvolvedor |
 | **Fotos - SITE** | Fotos do consultório, do atendimento e das provas sociais, mais a logo |
+| **Construção do Site › INTELIGÊNCIAS - META** | Rastreamento da Nayane: solicitação ao gestor de tráfego (com o que chegou e o que falta), passo a passo do GTM, regras de privacidade e checklist de validação. Versão de consulta do `docs/gtm-passo-a-passo.md` |
+| **CLIENTES › INTELIGÊNCIAS - CLIENTES** | Os mesmos quatro documentos como modelo, sem dado de nenhuma cliente, com os campos a preencher em amarelo. Serve para as próximas clientes (a Júlia é a próxima) |
 
 **Como a informação é pesada** (regra do `CLAUDE.md`), da que mais vale para a que menos vale: resposta da Dra. → fato documentado → hipótese → pendente → interno. Quando duas fontes se contradizem, aponta-se a contradição e pergunta-se; ninguém escolhe sozinho.
 
@@ -219,7 +222,8 @@ Conferência feita em 13/11/2026 contra os quatro documentos da cliente no Drive
 - [ ] **Token da Conversions API da Meta:** o guia avisa que foi compartilhado antes. Revogar e gerar outro, guardado só no servidor
 - [ ] **Google Ads:** ID e rótulo da conversão ("a definir" no guia)
 - [ ] **Tintim:** confirmar se vai usar; se sim, enviar os links por origem
-- [ ] **Google Search Console:** registro TXT no DNS (Registro.br, ver "Domínio e publicação") e depois a verificação no painel. Alternativa: meta tag de verificação no site
+- [x] **Search Console, registro TXT:** adicionado no DNS do Registro.br em 24/11/2026, sem mexer nos registros do site
+- [ ] **Search Console, verificação:** o Felipe clicar em Verificar em search.google.com/search-console, na propriedade de Domínio (previsto para 25/11/2026). Alternativa, se falhar: meta tag de verificação no site
 
 *Com a agência*
 - [ ] **Cor oficial da marca:** o manual de identidade estima o verde em `#49B89F`; o site usa `#16AD8E`, conferido nos pixels da logo. Definir uma só e pedir o arquivo vetorial da logo
